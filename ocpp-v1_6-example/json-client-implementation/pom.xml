@@ -14,7 +14,7 @@
 	<name>json-client-implementation</name>
 	<description>Demo project for a json client application, written in form of tests</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,13 +45,13 @@
 		</dependency>
 		<dependency>
 			<groupId>eu.chargetime.ocpp</groupId>
-			<artifactId>v1_6</artifactId>
-			<version>1.0.1</version>
+			<artifactId>ocpp-v1_6</artifactId>
+			<version>1.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>RELEASE</version>
+			<version>7.5</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

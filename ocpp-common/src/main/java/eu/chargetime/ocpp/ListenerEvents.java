@@ -28,6 +28,8 @@ package eu.chargetime.ocpp;
 import eu.chargetime.ocpp.model.SessionInformation;
 
 public interface ListenerEvents {
-  void authenticateSession(SessionInformation information, String username, byte[] password) throws AuthenticationException;
+  void authenticateSession(SessionInformation information, String username, byte[] password)
+      throws AuthenticationException;
+
   void newSession(ISession session, SessionInformation information);
 }

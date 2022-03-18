@@ -43,8 +43,8 @@ public class StatusNotificationFeature implements Feature {
 
   @Override
   public Confirmation handleRequest(UUID sessionIndex, Request request) {
-    return handler.handleStatusNotificationRequest(sessionIndex,
-        (StatusNotificationRequest) request);
+    return handler.handleStatusNotificationRequest(
+        sessionIndex, (StatusNotificationRequest) request);
   }
 
   @Override

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>eu.chargetime.ocpp</groupId>
-    <artifactId>v1_6-test</artifactId>
+    <artifactId>ocpp-v1_6-test</artifactId>
     <version>1.0.2</version>
 
     <name>Java-OCA-OCPP v1.6 - Integration test</name>
@@ -48,12 +48,12 @@
     <dependencies>
         <dependency>
             <groupId>eu.chargetime.ocpp</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>ocpp-common</artifactId>
             <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>eu.chargetime.ocpp</groupId>
-            <artifactId>v1_6</artifactId>
+            <artifactId>ocpp-v1_6</artifactId>
             <version>1.0.2</version>
         </dependency>
         <dependency>

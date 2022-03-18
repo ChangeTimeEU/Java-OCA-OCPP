@@ -28,13 +28,12 @@ package eu.chargetime.ocpp;
 import eu.chargetime.ocpp.feature.Feature;
 import eu.chargetime.ocpp.model.Confirmation;
 import eu.chargetime.ocpp.model.Request;
+import eu.chargetime.ocpp.model.SessionInformation;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
-
-import eu.chargetime.ocpp.model.SessionInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -83,76 +82,80 @@ public class Server {
         new ListenerEvents() {
 
           @Override
-          public void authenticateSession(SessionInformation information, String username, byte[] password) throws AuthenticationException {
+          public void authenticateSession(
+              SessionInformation information, String username, byte[] password)
+              throws AuthenticationException {
             serverEvents.authenticateSession(information, username, password);
           }
 
           @Override
           public void newSession(ISession session, SessionInformation information) {
             session.accept(
-                    new SessionEvents() {
-                      @Override
-                      public void handleConfirmation(String uniqueId, Confirmation confirmation) {
+                new SessionEvents() {
+                  @Override
+                  public void handleConfirmation(String uniqueId, Confirmation confirmation) {
 
-                        Optional<CompletableFuture<Confirmation>> promiseOptional =
-                                promiseRepository.getPromise(uniqueId);
-                        if (promiseOptional.isPresent()) {
-                          promiseOptional.get().complete(confirmation);
-                          promiseRepository.removePromise(uniqueId);
-                        } else {
-                          logger.debug("Promise not found for confirmation {}", confirmation);
-                        }
+                    Optional<CompletableFuture<Confirmation>> promiseOptional =
+                        promiseRepository.getPromise(uniqueId);
+                    if (promiseOptional.isPresent()) {
+                      promiseOptional.get().complete(confirmation);
+                      promiseRepository.removePromise(uniqueId);
+                    } else {
+                      logger.debug("Promise not found for confirmation {}", confirmation);
+                    }
+                  }
+
+                  @Override
+                  public Confirmation handleRequest(Request request)
+                      throws UnsupportedFeatureException {
+                    Optional<Feature> featureOptional = featureRepository.findFeature(request);
+                    if (featureOptional.isPresent()) {
+                      Optional<UUID> sessionIdOptional = getSessionID(session);
+                      if (sessionIdOptional.isPresent()) {
+                        return featureOptional
+                            .get()
+                            .handleRequest(sessionIdOptional.get(), request);
+                      } else {
+                        logger.error(
+                            "Unable to handle request ({}), the active session was not found.",
+                            request);
+                        throw new IllegalStateException("Active session not found");
                       }
+                    } else {
+                      throw new UnsupportedFeatureException();
+                    }
+                  }
 
-                      @Override
-                      public Confirmation handleRequest(Request request)
-                              throws UnsupportedFeatureException {
-                        Optional<Feature> featureOptional = featureRepository.findFeature(request);
-                        if (featureOptional.isPresent()) {
-                          Optional<UUID> sessionIdOptional = getSessionID(session);
-                          if (sessionIdOptional.isPresent()) {
-                            return featureOptional.get().handleRequest(sessionIdOptional.get(), request);
-                          } else {
-                            logger.error(
-                                    "Unable to handle request ({}), the active session was not found.",
-                                    request);
-                            throw new IllegalStateException("Active session not found");
-                          }
-                        } else {
-                          throw new UnsupportedFeatureException();
-                        }
-                      }
+                  @Override
+                  public void handleError(
+                      String uniqueId, String errorCode, String errorDescription, Object payload) {
+                    Optional<CompletableFuture<Confirmation>> promiseOptional =
+                        promiseRepository.getPromise(uniqueId);
+                    if (promiseOptional.isPresent()) {
+                      promiseOptional
+                          .get()
+                          .completeExceptionally(
+                              new CallErrorException(errorCode, errorDescription, payload));
+                      promiseRepository.removePromise(uniqueId);
+                    } else {
+                      logger.debug("Promise not found for error {}", errorDescription);
+                    }
+                  }
 
-                      @Override
-                      public void handleError(
-                              String uniqueId, String errorCode, String errorDescription, Object payload) {
-                        Optional<CompletableFuture<Confirmation>> promiseOptional =
-                                promiseRepository.getPromise(uniqueId);
-                        if (promiseOptional.isPresent()) {
-                          promiseOptional
-                                  .get()
-                                  .completeExceptionally(
-                                          new CallErrorException(errorCode, errorDescription, payload));
-                          promiseRepository.removePromise(uniqueId);
-                        } else {
-                          logger.debug("Promise not found for error {}", errorDescription);
-                        }
-                      }
+                  @Override
+                  public void handleConnectionClosed() {
+                    Optional<UUID> sessionIdOptional = getSessionID(session);
+                    if (sessionIdOptional.isPresent()) {
+                      serverEvents.lostSession(sessionIdOptional.get());
+                      sessions.remove(sessionIdOptional.get());
+                    } else {
+                      logger.warn("Active session not found");
+                    }
+                  }
 
-                      @Override
-                      public void handleConnectionClosed() {
-                        Optional<UUID> sessionIdOptional = getSessionID(session);
-                        if (sessionIdOptional.isPresent()) {
-                          serverEvents.lostSession(sessionIdOptional.get());
-                          sessions.remove(sessionIdOptional.get());
-                        } else {
-                          logger.warn("Active session not found");
-                        }
-                      }
-
-                      @Override
-                      public void handleConnectionOpened() {}
-                    });
+                  @Override
+                  public void handleConnectionOpened() {}
+                });
 
             sessions.put(session.getSessionId(), session);
 

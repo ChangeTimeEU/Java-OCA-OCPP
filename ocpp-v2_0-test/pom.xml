@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>eu.chargetime.ocpp</groupId>
-    <artifactId>v2_0-test</artifactId>
+    <artifactId>ocpp-v2_0-test</artifactId>
     <version>1.0.2</version>
     <packaging>jar</packaging>
 
@@ -49,12 +49,12 @@
     <dependencies>
         <dependency>
             <groupId>eu.chargetime.ocpp</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>ocpp-common</artifactId>
             <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>eu.chargetime.ocpp</groupId>
-            <artifactId>v2_0</artifactId>
+            <artifactId>ocpp-v2_0</artifactId>
             <version>1.0.2</version>
         </dependency>
         <dependency>

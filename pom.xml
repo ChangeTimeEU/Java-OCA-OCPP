@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>eu.chargetime.ocpp</groupId>
-    <artifactId>all</artifactId>
+    <artifactId>parent</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
 
@@ -40,6 +40,10 @@
         <module>OCPP-J</module>
         <module>ocpp-v1_6</module>
         <module>ocpp-v1_6-test</module>
+        <!-- broken
+        <module>ocpp-v1_6-example/json_server_example</module>
+        <module>ocpp-v1_6-example/json-client-implementation</module>
+        -->
         <module>ocpp-v2_0</module>
         <module>ocpp-v2_0-test</module>
     </modules>

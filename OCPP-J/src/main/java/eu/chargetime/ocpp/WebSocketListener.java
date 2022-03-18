@@ -82,9 +82,10 @@ public class WebSocketListener implements Listener {
   public void open(String hostname, int port, ListenerEvents handler) {
     server =
         new WebSocketServer(
-                new InetSocketAddress(hostname, port),
-                configuration.getParameter(JSONConfiguration.WEBSOCKET_WORKER_COUNT, DEFAULT_WEBSOCKET_WORKER_COUNT),
-                drafts) {
+            new InetSocketAddress(hostname, port),
+            configuration.getParameter(
+                JSONConfiguration.WEBSOCKET_WORKER_COUNT, DEFAULT_WEBSOCKET_WORKER_COUNT),
+            drafts) {
           @Override
           public void onOpen(WebSocket webSocket, ClientHandshake clientHandshake) {
             logger.debug(
@@ -115,9 +116,9 @@ public class WebSocketListener implements Listener {
             String proxiedAddress = clientHandshake.getFieldValue(HTTP_HEADER_PROXIED_ADDRESS);
 
             logger.debug(
-                    "New web-socket connection opened from address: {} proxied for: {}",
-                    webSocket.getRemoteSocketAddress(),
-                    proxiedAddress);
+                "New web-socket connection opened from address: {} proxied for: {}",
+                webSocket.getRemoteSocketAddress(),
+                proxiedAddress);
 
             SessionInformation information =
                 new SessionInformation.Builder()
@@ -131,13 +132,14 @@ public class WebSocketListener implements Listener {
           }
 
           @Override
-          public ServerHandshakeBuilder onWebsocketHandshakeReceivedAsServer(WebSocket webSocket, Draft draft,
-                                                                             ClientHandshake clientHandshake) throws InvalidDataException {
+          public ServerHandshakeBuilder onWebsocketHandshakeReceivedAsServer(
+              WebSocket webSocket, Draft draft, ClientHandshake clientHandshake)
+              throws InvalidDataException {
             SessionInformation information =
-                    new SessionInformation.Builder()
-                            .Identifier(clientHandshake.getResourceDescriptor())
-                            .InternetAddress(webSocket.getRemoteSocketAddress())
-                            .build();
+                new SessionInformation.Builder()
+                    .Identifier(clientHandshake.getResourceDescriptor())
+                    .InternetAddress(webSocket.getRemoteSocketAddress())
+                    .build();
 
             String username = null;
             byte[] password = null;
@@ -150,7 +152,8 @@ public class WebSocketListener implements Listener {
                 // split credentials on username and password
                 for (int i = 0; i < credDecoded.length; i++) {
                   if (credDecoded[i] == ':') {
-                    username = new String(Arrays.copyOfRange(credDecoded, 0, i), StandardCharsets.UTF_8);
+                    username =
+                        new String(Arrays.copyOfRange(credDecoded, 0, i), StandardCharsets.UTF_8);
                     if (i + 1 < credDecoded.length) {
                       password = Arrays.copyOfRange(credDecoded, i + 1, credDecoded.length);
                     }
@@ -158,17 +161,17 @@ public class WebSocketListener implements Listener {
                   }
                 }
               }
-              if (password == null || password.length < OCPPJ_CP_MIN_PASSWORD_LENGTH || password.length > OCPPJ_CP_MAX_PASSWORD_LENGTH)
+              if (password == null
+                  || password.length < OCPPJ_CP_MIN_PASSWORD_LENGTH
+                  || password.length > OCPPJ_CP_MAX_PASSWORD_LENGTH)
                 throw new InvalidDataException(401, "Invalid password length");
             }
 
             try {
               handler.authenticateSession(information, username, password);
-            }
-            catch (AuthenticationException e) {
+            } catch (AuthenticationException e) {
               throw new InvalidDataException(e.getErrorCode(), e.getMessage());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
               throw new InvalidDataException(401, e.getMessage());
             }
             return super.onWebsocketHandshakeReceivedAsServer(webSocket, draft, clientHandshake);

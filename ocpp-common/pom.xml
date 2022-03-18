@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>eu.chargetime.ocpp</groupId>
-    <artifactId>common</artifactId>
+    <artifactId>ocpp-common</artifactId>
     <version>1.0.1</version>
 
     <name>Java-OCA-OCPP common</name>
@@ -128,6 +128,7 @@
                 </execution>
               </executions>
             </plugin>
+            <!-- disable
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -142,6 +143,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
