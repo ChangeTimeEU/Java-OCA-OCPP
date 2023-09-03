@@ -30,7 +30,6 @@ import eu.chargetime.ocpp.model.RequestWithId;
 import eu.chargetime.ocpp.model.securityext.types.LogEnumType;
 import eu.chargetime.ocpp.model.securityext.types.LogParametersType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class GetLogRequest extends RequestWithId {
@@ -41,18 +40,15 @@ public class GetLogRequest extends RequestWithId {
   private Integer retryInterval;
   private LogParametersType log;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private GetLogRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private GetLogRequest() {}
 
   /**
    * Handle required fields.
    *
-   * @param logType   LogEnumType. See {@link #setLogType(LogEnumType)}
+   * @param logType LogEnumType. See {@link #setLogType(LogEnumType)}
    * @param requestId Integer. See {@link #setRequestId(Integer)}
-   * @param log       LogParametersType. See {@link #setLog(LogParametersType)}
+   * @param log LogParametersType. See {@link #setLog(LogParametersType)}
    */
   public GetLogRequest(LogEnumType logType, Integer requestId, LogParametersType log) {
     setLogType(logType);
@@ -97,9 +93,9 @@ public class GetLogRequest extends RequestWithId {
   }
 
   /**
-   * This specifies how many times the Charge Point must try to upload the log
-   * before giving up. If this field is not present, it is left to Charge Point
-   * to decide how many times it wants to retry.
+   * This specifies how many times the Charge Point must try to upload the log before giving up. If
+   * this field is not present, it is left to Charge Point to decide how many times it wants to
+   * retry.
    *
    * @return Integer
    */
@@ -108,9 +104,9 @@ public class GetLogRequest extends RequestWithId {
   }
 
   /**
-   * Optional. This specifies how many times the Charge Point must try to upload the log
-   * before giving up. If this field is not present, it is left to Charge Point
-   * to decide how many times it wants to retry.
+   * Optional. This specifies how many times the Charge Point must try to upload the log before
+   * giving up. If this field is not present, it is left to Charge Point to decide how many times it
+   * wants to retry.
    *
    * @param retries Integer
    */
@@ -119,9 +115,8 @@ public class GetLogRequest extends RequestWithId {
   }
 
   /**
-   * The interval in seconds after which a retry may be attempted. If this
-   * field is not present, it is left to Charge Point to decide how long to wait between
-   * attempts
+   * The interval in seconds after which a retry may be attempted. If this field is not present, it
+   * is left to Charge Point to decide how long to wait between attempts
    *
    * @return Integer
    */
@@ -130,9 +125,8 @@ public class GetLogRequest extends RequestWithId {
   }
 
   /**
-   * Optional. The interval in seconds after which a retry may be attempted. If this
-   * field is not present, it is left to Charge Point to decide how long to wait between
-   * attempts
+   * Optional. The interval in seconds after which a retry may be attempted. If this field is not
+   * present, it is left to Charge Point to decide how long to wait between attempts
    *
    * @param retryInterval Integer
    */
@@ -141,8 +135,7 @@ public class GetLogRequest extends RequestWithId {
   }
 
   /**
-   * This field specifies the requested log and the location to which the log
-   * should be sent.
+   * This field specifies the requested log and the location to which the log should be sent.
    *
    * @return {@link LogParametersType}
    */
@@ -151,8 +144,8 @@ public class GetLogRequest extends RequestWithId {
   }
 
   /**
-   * Required. This field specifies the requested log and the location to which the log
-   * should be sent.
+   * Required. This field specifies the requested log and the location to which the log should be
+   * sent.
    *
    * @param log {@link LogParametersType}
    */
@@ -176,10 +169,10 @@ public class GetLogRequest extends RequestWithId {
     if (o == null || getClass() != o.getClass()) return false;
     GetLogRequest that = (GetLogRequest) o;
     return Objects.equals(logType, that.logType)
-      && Objects.equals(requestId, that.requestId)
-      && Objects.equals(retries, that.retries)
-      && Objects.equals(retryInterval, that.retryInterval)
-      && Objects.equals(log, that.log);
+        && Objects.equals(requestId, that.requestId)
+        && Objects.equals(retries, that.retries)
+        && Objects.equals(retryInterval, that.retryInterval)
+        && Objects.equals(log, that.log);
   }
 
   @Override
@@ -190,11 +183,12 @@ public class GetLogRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("logType", logType)
-      .add("requestId", requestId)
-      .add("retries", retries)
-      .add("retryInterval", retryInterval)
-      .add("log", log)
-      .add("isValid", validate()).toString();
+        .add("logType", logType)
+        .add("requestId", requestId)
+        .add("retries", retries)
+        .add("retryInterval", retryInterval)
+        .add("log", log)
+        .add("isValid", validate())
+        .toString();
   }
 }

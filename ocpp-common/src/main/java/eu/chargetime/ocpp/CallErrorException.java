@@ -25,9 +25,7 @@ package eu.chargetime.ocpp;
  SOFTWARE.
 */
 
-/**
- * Exception returned to an outgoing request if an error is reported from the other end.
- */
+/** Exception returned to an outgoing request if an error is reported from the other end. */
 public class CallErrorException extends Exception {
 
   private String errorCode;
@@ -37,9 +35,9 @@ public class CallErrorException extends Exception {
   /**
    * Constructor.
    *
-   * @param errorCode        send from the other end.
+   * @param errorCode send from the other end.
    * @param errorDescription describing the error.
-   * @param payload          raw payload send from the other end.
+   * @param payload raw payload send from the other end.
    */
   public CallErrorException(String errorCode, String errorDescription, Object payload) {
     super(

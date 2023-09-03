@@ -26,7 +26,6 @@ package eu.chargetime.ocpp.model.validation;
 */
 
 import eu.chargetime.ocpp.PropertyConstraintException;
-
 import java.util.regex.Pattern;
 
 public class IdentifierStringValidationRule implements IValidationRule {

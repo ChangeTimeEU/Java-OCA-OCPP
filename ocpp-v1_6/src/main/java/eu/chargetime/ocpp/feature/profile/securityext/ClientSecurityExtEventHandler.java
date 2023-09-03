@@ -59,20 +59,24 @@ public interface ClientSecurityExtEventHandler {
   DeleteCertificateConfirmation handleDeleteCertificateRequest(DeleteCertificateRequest request);
 
   /**
-   * Handle a {@link ExtendedTriggerMessageRequest} and return a {@link ExtendedTriggerMessageConfirmation}.
+   * Handle a {@link ExtendedTriggerMessageRequest} and return a {@link
+   * ExtendedTriggerMessageConfirmation}.
    *
    * @param request incoming {@link ExtendedTriggerMessageRequest} to handle.
    * @return outgoing {@link ExtendedTriggerMessageConfirmation} to reply with.
    */
-  ExtendedTriggerMessageConfirmation handleExtendedTriggerMessageRequest(ExtendedTriggerMessageRequest request);
+  ExtendedTriggerMessageConfirmation handleExtendedTriggerMessageRequest(
+      ExtendedTriggerMessageRequest request);
 
   /**
-   * Handle a {@link GetInstalledCertificateIdsRequest} and return a {@link GetInstalledCertificateIdsConfirmation}.
+   * Handle a {@link GetInstalledCertificateIdsRequest} and return a {@link
+   * GetInstalledCertificateIdsConfirmation}.
    *
    * @param request incoming {@link GetInstalledCertificateIdsRequest} to handle.
    * @return outgoing {@link GetInstalledCertificateIdsConfirmation} to reply with.
    */
-  GetInstalledCertificateIdsConfirmation handleGetInstalledCertificateIdsRequest(GetInstalledCertificateIdsRequest request);
+  GetInstalledCertificateIdsConfirmation handleGetInstalledCertificateIdsRequest(
+      GetInstalledCertificateIdsRequest request);
 
   /**
    * Handle a {@link GetLogRequest} and return a {@link GetLogConfirmation}.
@@ -91,10 +95,12 @@ public interface ClientSecurityExtEventHandler {
   InstallCertificateConfirmation handleInstallCertificateRequest(InstallCertificateRequest request);
 
   /**
-   * Handle a {@link SignedUpdateFirmwareRequest} and return a {@link SignedUpdateFirmwareConfirmation}.
+   * Handle a {@link SignedUpdateFirmwareRequest} and return a {@link
+   * SignedUpdateFirmwareConfirmation}.
    *
    * @param request incoming {@link SignedUpdateFirmwareRequest} to handle.
    * @return outgoing {@link SignedUpdateFirmwareConfirmation} to reply with.
    */
-  SignedUpdateFirmwareConfirmation handleSignedUpdateFirmwareRequest(SignedUpdateFirmwareRequest request);
+  SignedUpdateFirmwareConfirmation handleSignedUpdateFirmwareRequest(
+      SignedUpdateFirmwareRequest request);
 }

@@ -28,23 +28,17 @@ package eu.chargetime.ocpp.model.securityext.types;
 
 import eu.chargetime.ocpp.model.securityext.GetLogConfirmation;
 
-/**
- * LogStatusEnumType is used by {@link GetLogConfirmation}
- */
+/** LogStatusEnumType is used by {@link GetLogConfirmation} */
 public enum LogStatusEnumType {
   /**
-   * Accepted this log upload. This does not mean the log file is uploaded is successfully,
-   * the Charge Point will now start the log file upload.
+   * Accepted this log upload. This does not mean the log file is uploaded is successfully, the
+   * Charge Point will now start the log file upload.
    */
   Accepted,
 
-  /**
-   * Log update request rejected.
-   */
+  /** Log update request rejected. */
   Rejected,
 
-  /**
-   * Accepted this log upload, but in doing this has canceled an ongoing log file upload.
-   */
+  /** Accepted this log upload, but in doing this has canceled an ongoing log file upload. */
   AcceptedCanceled
 }

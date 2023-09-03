@@ -32,13 +32,9 @@ import eu.chargetime.ocpp.model.securityext.GetInstalledCertificateIdsConfirmati
  * GetInstalledCertificateStatusEnumType is used by {@link GetInstalledCertificateIdsConfirmation}
  */
 public enum GetInstalledCertificateStatusEnumType {
-  /**
-   * Normal successful completion (no errors).
-   */
+  /** Normal successful completion (no errors). */
   Accepted,
 
-  /**
-   * Requested certificate not found.
-   */
+  /** Requested certificate not found. */
   NotFound
 }

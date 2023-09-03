@@ -202,12 +202,13 @@ public class CommunicatorTest {
   @Test
   public void confirmationCallback_Handler() {
     // Given
-    Confirmation conf = new Confirmation() {
-      @Override
-      public boolean validate() {
-        return true;
-      }
-    };
+    Confirmation conf =
+        new Confirmation() {
+          @Override
+          public boolean validate() {
+            return true;
+          }
+        };
 
     ConfirmationCompletedHandler handler = mock(ConfirmationCompletedHandler.class);
     conf.setCompletedHandler(handler);
@@ -226,12 +227,13 @@ public class CommunicatorTest {
   public void confirmationCallback_noHandler() {
     // Make sure it's not crashing because it has no handler set
 
-    Confirmation conf = new Confirmation() {
-      @Override
-      public boolean validate() {
-        return true;
-      }
-    };
+    Confirmation conf =
+        new Confirmation() {
+          @Override
+          public boolean validate() {
+            return true;
+          }
+        };
 
     String uniqueId = "some id";
     String action = "some action";

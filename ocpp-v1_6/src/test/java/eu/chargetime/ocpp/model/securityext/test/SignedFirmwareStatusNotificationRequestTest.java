@@ -26,12 +26,12 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import eu.chargetime.ocpp.model.securityext.SignedFirmwareStatusNotificationRequest;
 import eu.chargetime.ocpp.model.securityext.types.FirmwareStatusEnumType;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class SignedFirmwareStatusNotificationRequestTest {
 
@@ -39,7 +39,8 @@ public class SignedFirmwareStatusNotificationRequestTest {
   public void validate_constructor_returnsTrue() {
     // Given
     FirmwareStatusEnumType status = FirmwareStatusEnumType.Downloaded;
-    SignedFirmwareStatusNotificationRequest request = new SignedFirmwareStatusNotificationRequest(status);
+    SignedFirmwareStatusNotificationRequest request =
+        new SignedFirmwareStatusNotificationRequest(status);
 
     // When
     boolean actual = request.validate();
@@ -52,7 +53,8 @@ public class SignedFirmwareStatusNotificationRequestTest {
   public void validate_setRequired_returnsTrue() {
     // Given
     FirmwareStatusEnumType status = FirmwareStatusEnumType.Downloaded;
-    SignedFirmwareStatusNotificationRequest request = new SignedFirmwareStatusNotificationRequest(null);
+    SignedFirmwareStatusNotificationRequest request =
+        new SignedFirmwareStatusNotificationRequest(null);
     request.setStatus(status);
 
     // When
@@ -66,7 +68,8 @@ public class SignedFirmwareStatusNotificationRequestTest {
   public void validate_setRequiredAndOptional_returnsTrue() {
     // Given
     FirmwareStatusEnumType status = FirmwareStatusEnumType.Downloaded;
-    SignedFirmwareStatusNotificationRequest request = new SignedFirmwareStatusNotificationRequest(null);
+    SignedFirmwareStatusNotificationRequest request =
+        new SignedFirmwareStatusNotificationRequest(null);
     request.setStatus(status);
     request.setRequestId(123);
 
@@ -80,7 +83,8 @@ public class SignedFirmwareStatusNotificationRequestTest {
   @Test
   public void validate_returnFalse() {
     // Given
-    SignedFirmwareStatusNotificationRequest request = new SignedFirmwareStatusNotificationRequest(null);
+    SignedFirmwareStatusNotificationRequest request =
+        new SignedFirmwareStatusNotificationRequest(null);
 
     // When
     boolean actual = request.validate();

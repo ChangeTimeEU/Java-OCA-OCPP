@@ -26,15 +26,14 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import eu.chargetime.ocpp.PropertyConstraintException;
 import eu.chargetime.ocpp.model.securityext.SecurityEventNotificationRequest;
 import eu.chargetime.ocpp.utilities.TestUtilities;
-import org.junit.Test;
-
 import java.time.ZonedDateTime;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 public class SecurityEventNotificationRequestTest {
 
@@ -43,7 +42,8 @@ public class SecurityEventNotificationRequestTest {
     // Given
     String type = givenType();
     ZonedDateTime timestamp = ZonedDateTime.now();
-    SecurityEventNotificationRequest request = new SecurityEventNotificationRequest(type, timestamp);
+    SecurityEventNotificationRequest request =
+        new SecurityEventNotificationRequest(type, timestamp);
 
     // When
     boolean actual = request.validate();
@@ -106,7 +106,8 @@ public class SecurityEventNotificationRequestTest {
     String type = givenType();
     ZonedDateTime timestamp = ZonedDateTime.now();
     String techInfo = TestUtilities.aString(255);
-    SecurityEventNotificationRequest request = new SecurityEventNotificationRequest(type, timestamp);
+    SecurityEventNotificationRequest request =
+        new SecurityEventNotificationRequest(type, timestamp);
 
     // When
     request.setTechInfo(techInfo);
@@ -120,7 +121,8 @@ public class SecurityEventNotificationRequestTest {
     String type = givenType();
     ZonedDateTime timestamp = ZonedDateTime.now();
     String techInfo = TestUtilities.aString(256);
-    SecurityEventNotificationRequest request = new SecurityEventNotificationRequest(type, timestamp);
+    SecurityEventNotificationRequest request =
+        new SecurityEventNotificationRequest(type, timestamp);
 
     // When
     request.setTechInfo(techInfo);

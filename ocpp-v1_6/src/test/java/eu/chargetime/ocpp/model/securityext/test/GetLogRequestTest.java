@@ -26,15 +26,15 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
-import eu.chargetime.ocpp.model.securityext.GetLogRequest;
-import eu.chargetime.ocpp.model.securityext.types.LogEnumType;
-import eu.chargetime.ocpp.model.securityext.types.LogParametersType;
-import org.junit.Test;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import eu.chargetime.ocpp.model.securityext.GetLogRequest;
+import eu.chargetime.ocpp.model.securityext.types.LogEnumType;
+import eu.chargetime.ocpp.model.securityext.types.LogParametersType;
+import org.junit.Test;
 
 public class GetLogRequestTest {
 

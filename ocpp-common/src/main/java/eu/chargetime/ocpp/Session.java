@@ -30,11 +30,11 @@ import eu.chargetime.ocpp.feature.Feature;
 import eu.chargetime.ocpp.model.Confirmation;
 import eu.chargetime.ocpp.model.Request;
 import eu.chargetime.ocpp.utilities.MoreObjects;
+import java.util.AbstractMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.AbstractMap;
 import java.util.concurrent.CompletableFuture;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +53,9 @@ public class Session implements ISession {
   private final RequestDispatcher dispatcher;
   private final IFeatureRepository featureRepository;
   private SessionEvents events;
-  private final Map<String, AbstractMap.SimpleImmutableEntry<String, CompletableFuture<Confirmation>>> pendingPromises = new HashMap<>();
+  private final Map<
+          String, AbstractMap.SimpleImmutableEntry<String, CompletableFuture<Confirmation>>>
+      pendingPromises = new HashMap<>();
 
   /**
    * Handles required injections.
@@ -157,9 +159,11 @@ public class Session implements ISession {
 
   private class CommunicatorEventHandler implements CommunicatorEvents {
     private static final String OCCURENCE_CONSTRAINT_VIOLATION =
-        "Payload for Action is syntactically correct but at least one of the fields violates occurence constraints";
+        "Payload for Action is syntactically correct but at least one of the fields violates"
+            + " occurence constraints";
     private static final String INTERNAL_ERROR =
-        "An internal error occurred and the receiver was not able to process the requested Action successfully";
+        "An internal error occurred and the receiver was not able to process the requested Action"
+            + " successfully";
     private static final String UNABLE_TO_PROCESS = "Unable to process action";
 
     @Override
@@ -238,16 +242,19 @@ public class Session implements ISession {
     }
   }
 
-  private void addPendingPromise(String id, String action, CompletableFuture<Confirmation> promise) {
+  private void addPendingPromise(
+      String id, String action, CompletableFuture<Confirmation> promise) {
     synchronized (pendingPromises) {
       pendingPromises.put(id, new AbstractMap.SimpleImmutableEntry<>(action, promise));
     }
   }
 
   @Override
-  public boolean completePendingPromise(String id, Confirmation confirmation) throws UnsupportedFeatureException, OccurenceConstraintException {
+  public boolean completePendingPromise(String id, Confirmation confirmation)
+      throws UnsupportedFeatureException, OccurenceConstraintException {
     AbstractMap.SimpleImmutableEntry<String, CompletableFuture<Confirmation>> promiseAction = null;
-    // synchronization prevents from confirming one promise more than once, as we remove found promise
+    // synchronization prevents from confirming one promise more than once, as we remove found
+    // promise
     synchronized (pendingPromises) {
       promiseAction = pendingPromises.get(id);
       if (promiseAction == null) return false;
@@ -262,7 +269,8 @@ public class Session implements ISession {
       }
     } else {
       logger.debug("Feature for confirmation with id: {} not found in session: {}", id, this);
-      throw new UnsupportedFeatureException("Error with getting confirmation type by request id = " + id);
+      throw new UnsupportedFeatureException(
+          "Error with getting confirmation type by request id = " + id);
     }
     promiseAction.getValue().complete(confirmation);
     return true;

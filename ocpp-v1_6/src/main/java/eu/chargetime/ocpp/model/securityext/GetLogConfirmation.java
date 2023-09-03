@@ -33,24 +33,18 @@ import eu.chargetime.ocpp.model.validation.StringMaxLengthValidationRule;
 import eu.chargetime.ocpp.model.validation.Validator;
 import eu.chargetime.ocpp.model.validation.ValidatorBuilder;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class GetLogConfirmation extends Confirmation {
 
   private static final transient Validator filenameValidator =
-    new ValidatorBuilder()
-      .addRule(new StringMaxLengthValidationRule(255))
-      .build();
+      new ValidatorBuilder().addRule(new StringMaxLengthValidationRule(255)).build();
 
   private LogStatusEnumType status;
   private String filename;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private GetLogConfirmation() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private GetLogConfirmation() {}
 
   /**
    * Handle required fields.
@@ -62,8 +56,7 @@ public class GetLogConfirmation extends Confirmation {
   }
 
   /**
-   * This field indicates whether the Charge Point was able to accept the
-   * request.
+   * This field indicates whether the Charge Point was able to accept the request.
    *
    * @return {@link LogStatusEnumType}
    */
@@ -72,8 +65,7 @@ public class GetLogConfirmation extends Confirmation {
   }
 
   /**
-   * Required. This field indicates whether the Charge Point was able to accept the
-   * request.
+   * Required. This field indicates whether the Charge Point was able to accept the request.
    *
    * @param status {@link LogStatusEnumType}
    */
@@ -82,8 +74,8 @@ public class GetLogConfirmation extends Confirmation {
   }
 
   /**
-   * This contains the name of the log file that will be uploaded. This field is
-   * not present when no logging information is available.
+   * This contains the name of the log file that will be uploaded. This field is not present when no
+   * logging information is available.
    *
    * @return string[0..255]
    */
@@ -92,8 +84,8 @@ public class GetLogConfirmation extends Confirmation {
   }
 
   /**
-   * Optional. This contains the name of the log file that will be uploaded. This field is
-   * not present when no logging information is available.
+   * Optional. This contains the name of the log file that will be uploaded. This field is not
+   * present when no logging information is available.
    *
    * @param filename string[0..255]
    */
@@ -112,8 +104,7 @@ public class GetLogConfirmation extends Confirmation {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GetLogConfirmation that = (GetLogConfirmation) o;
-    return Objects.equals(status, that.status)
-      && Objects.equals(filename, that.filename);
+    return Objects.equals(status, that.status) && Objects.equals(filename, that.filename);
   }
 
   @Override
@@ -124,8 +115,9 @@ public class GetLogConfirmation extends Confirmation {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("status", status)
-      .add("filename", filename)
-      .add("isValid", validate()).toString();
+        .add("status", status)
+        .add("filename", filename)
+        .add("isValid", validate())
+        .toString();
   }
 }

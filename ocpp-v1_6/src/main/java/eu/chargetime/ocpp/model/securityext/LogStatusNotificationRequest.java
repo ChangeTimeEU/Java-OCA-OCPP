@@ -29,7 +29,6 @@ package eu.chargetime.ocpp.model.securityext;
 import eu.chargetime.ocpp.model.RequestWithId;
 import eu.chargetime.ocpp.model.securityext.types.UploadLogStatusEnumType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class LogStatusNotificationRequest extends RequestWithId {
@@ -37,11 +36,8 @@ public class LogStatusNotificationRequest extends RequestWithId {
   private UploadLogStatusEnumType status;
   private Integer requestId;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private LogStatusNotificationRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private LogStatusNotificationRequest() {}
 
   /**
    * Handle required fields.
@@ -71,8 +67,7 @@ public class LogStatusNotificationRequest extends RequestWithId {
   }
 
   /**
-   * The request id that was provided in the {@link GetLogRequest}
-   * that started this log upload.
+   * The request id that was provided in the {@link GetLogRequest} that started this log upload.
    *
    * @return Integer
    */
@@ -81,8 +76,8 @@ public class LogStatusNotificationRequest extends RequestWithId {
   }
 
   /**
-   * Optional. The request id that was provided in the {@link GetLogRequest}
-   * that started this log upload.
+   * Optional. The request id that was provided in the {@link GetLogRequest} that started this log
+   * upload.
    *
    * @param requestId Integer
    */
@@ -105,8 +100,7 @@ public class LogStatusNotificationRequest extends RequestWithId {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     LogStatusNotificationRequest that = (LogStatusNotificationRequest) o;
-    return Objects.equals(status, that.status)
-      && Objects.equals(requestId, that.requestId);
+    return Objects.equals(status, that.status) && Objects.equals(requestId, that.requestId);
   }
 
   @Override
@@ -117,8 +111,9 @@ public class LogStatusNotificationRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("status", status)
-      .add("requestId", requestId)
-      .add("isValid", validate()).toString();
+        .add("status", status)
+        .add("requestId", requestId)
+        .add("isValid", validate())
+        .toString();
   }
 }

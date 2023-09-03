@@ -26,12 +26,12 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import eu.chargetime.ocpp.model.securityext.InstallCertificateConfirmation;
 import eu.chargetime.ocpp.model.securityext.types.CertificateStatusEnumType;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class InstallCertificateConfirmationTest {
 

@@ -56,7 +56,8 @@ public interface SessionEvents {
    * @param confirmation the {@link Confirmation} to the {@link Request}.
    * @return a boolean indicating if pending request was found.
    */
-  boolean asyncCompleteRequest(String uniqueId, Confirmation confirmation) throws UnsupportedFeatureException, OccurenceConstraintException;
+  boolean asyncCompleteRequest(String uniqueId, Confirmation confirmation)
+      throws UnsupportedFeatureException, OccurenceConstraintException;
 
   /**
    * Handle a error to a {@link Request}.

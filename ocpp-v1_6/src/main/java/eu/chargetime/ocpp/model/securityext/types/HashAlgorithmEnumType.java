@@ -26,22 +26,14 @@ package eu.chargetime.ocpp.model.securityext.types;
    SOFTWARE.
 */
 
-/**
- * HashAlgorithmEnumType is used by {@link CertificateHashDataType}
- */
+/** HashAlgorithmEnumType is used by {@link CertificateHashDataType} */
 public enum HashAlgorithmEnumType {
-  /**
-   * SHA-256 hash algorithm.
-   */
+  /** SHA-256 hash algorithm. */
   SHA256,
 
-  /**
-   * SHA-384 hash algorithm.
-   */
+  /** SHA-384 hash algorithm. */
   SHA384,
 
-  /**
-   * SHA-512 hash algorithm.
-   */
+  /** SHA-512 hash algorithm. */
   SHA512
 }

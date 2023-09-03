@@ -31,37 +31,31 @@ import eu.chargetime.ocpp.model.validation.StringMaxLengthValidationRule;
 import eu.chargetime.ocpp.model.validation.Validator;
 import eu.chargetime.ocpp.model.validation.ValidatorBuilder;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
 public class SecurityEventNotificationRequest extends RequestWithId {
 
   private static final transient Validator typeValidator =
-    new ValidatorBuilder()
-      .addRule(new StringMaxLengthValidationRule(50))
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder()
+          .addRule(new StringMaxLengthValidationRule(50))
+          .setRequired(true)
+          .build();
 
   private static final transient Validator techInfoValidator =
-    new ValidatorBuilder()
-      .addRule(new StringMaxLengthValidationRule(255))
-      .build();
+      new ValidatorBuilder().addRule(new StringMaxLengthValidationRule(255)).build();
 
   private String type;
   private ZonedDateTime timestamp;
   private String techInfo;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private SecurityEventNotificationRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private SecurityEventNotificationRequest() {}
 
   /**
    * Handle required fields.
    *
-   * @param type      String. See {@link #setType(String)}
+   * @param type String. See {@link #setType(String)}
    * @param timestamp dateTime. See {@link #setTimestamp(ZonedDateTime)}
    */
   public SecurityEventNotificationRequest(String type, ZonedDateTime timestamp) {
@@ -133,8 +127,8 @@ public class SecurityEventNotificationRequest extends RequestWithId {
   @Override
   public boolean validate() {
     return typeValidator.safeValidate(type)
-      && timestamp != null
-      && techInfoValidator.safeValidate(techInfo);
+        && timestamp != null
+        && techInfoValidator.safeValidate(techInfo);
   }
 
   @Override
@@ -143,8 +137,8 @@ public class SecurityEventNotificationRequest extends RequestWithId {
     if (o == null || getClass() != o.getClass()) return false;
     SecurityEventNotificationRequest that = (SecurityEventNotificationRequest) o;
     return Objects.equals(type, that.type)
-      && Objects.equals(timestamp, that.timestamp)
-      && Objects.equals(techInfo, that.techInfo);
+        && Objects.equals(timestamp, that.timestamp)
+        && Objects.equals(techInfo, that.techInfo);
   }
 
   @Override
@@ -155,9 +149,10 @@ public class SecurityEventNotificationRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("type", type)
-      .add("timestamp", timestamp)
-      .add("techInfo", techInfo)
-      .add("isValid", validate()).toString();
+        .add("type", type)
+        .add("timestamp", timestamp)
+        .add("techInfo", techInfo)
+        .add("isValid", validate())
+        .toString();
   }
 }

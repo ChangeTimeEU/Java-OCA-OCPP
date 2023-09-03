@@ -211,7 +211,11 @@ public abstract class Communicator {
         try {
           completedHandler.onConfirmationCompleted();
         } catch (Throwable e) {
-          events.onError(uniqueId, "ConfirmationCompletedHandlerFailed", "The confirmation completed callback handler failed with exception " + e.toString(), confirmation);
+          events.onError(
+              uniqueId,
+              "ConfirmationCompletedHandlerFailed",
+              "The confirmation completed callback handler failed with exception " + e.toString(),
+              confirmation);
         }
       }
     } catch (NotConnectedException ex) {
@@ -234,7 +238,8 @@ public abstract class Communicator {
   public void sendCallError(
       String uniqueId, String action, String errorCode, String errorDescription) {
     logger.error(
-        "An error occurred. Sending this information: uniqueId {}: action: {}, errorCore: {}, errorDescription: {}",
+        "An error occurred. Sending this information: uniqueId {}: action: {}, errorCore: {},"
+            + " errorDescription: {}",
         uniqueId,
         action,
         errorCode,

@@ -34,43 +34,49 @@ import eu.chargetime.ocpp.model.securityext.SignCertificateConfirmation;
 import eu.chargetime.ocpp.model.securityext.SignCertificateRequest;
 import eu.chargetime.ocpp.model.securityext.SignedFirmwareStatusNotificationConfirmation;
 import eu.chargetime.ocpp.model.securityext.SignedFirmwareStatusNotificationRequest;
-
 import java.util.UUID;
 
 public interface ServerSecurityExtEventHandler {
   /**
-   * Handle a {@link LogStatusNotificationRequest} and return a {@link LogStatusNotificationConfirmation}.
+   * Handle a {@link LogStatusNotificationRequest} and return a {@link
+   * LogStatusNotificationConfirmation}.
    *
    * @param sessionIndex source of the request.
-   * @param request      incoming {@link LogStatusNotificationRequest} to handle.
+   * @param request incoming {@link LogStatusNotificationRequest} to handle.
    * @return outgoing {@link LogStatusNotificationConfirmation} to reply with.
    */
-  LogStatusNotificationConfirmation handleLogStatusNotificationRequest(UUID sessionIndex, LogStatusNotificationRequest request);
+  LogStatusNotificationConfirmation handleLogStatusNotificationRequest(
+      UUID sessionIndex, LogStatusNotificationRequest request);
 
   /**
-   * Handle a {@link SecurityEventNotificationRequest} and return a {@link SecurityEventNotificationConfirmation}.
+   * Handle a {@link SecurityEventNotificationRequest} and return a {@link
+   * SecurityEventNotificationConfirmation}.
    *
    * @param sessionIndex source of the request.
-   * @param request      incoming {@link SecurityEventNotificationRequest} to handle.
+   * @param request incoming {@link SecurityEventNotificationRequest} to handle.
    * @return outgoing {@link SecurityEventNotificationConfirmation} to reply with.
    */
-  SecurityEventNotificationConfirmation handleSecurityEventNotificationRequest(UUID sessionIndex, SecurityEventNotificationRequest request);
+  SecurityEventNotificationConfirmation handleSecurityEventNotificationRequest(
+      UUID sessionIndex, SecurityEventNotificationRequest request);
 
   /**
    * Handle a {@link SignCertificateRequest} and return a {@link SignCertificateConfirmation}.
    *
    * @param sessionIndex source of the request.
-   * @param request      incoming {@link SignCertificateRequest} to handle.
+   * @param request incoming {@link SignCertificateRequest} to handle.
    * @return outgoing {@link SignCertificateConfirmation} to reply with.
    */
-  SignCertificateConfirmation handleSignCertificateRequest(UUID sessionIndex, SignCertificateRequest request);
+  SignCertificateConfirmation handleSignCertificateRequest(
+      UUID sessionIndex, SignCertificateRequest request);
 
   /**
-   * Handle a {@link SignedFirmwareStatusNotificationRequest} and return a {@link SignedFirmwareStatusNotificationConfirmation}.
+   * Handle a {@link SignedFirmwareStatusNotificationRequest} and return a {@link
+   * SignedFirmwareStatusNotificationConfirmation}.
    *
    * @param sessionIndex source of the request.
-   * @param request      incoming {@link SignedFirmwareStatusNotificationRequest} to handle.
+   * @param request incoming {@link SignedFirmwareStatusNotificationRequest} to handle.
    * @return outgoing {@link SignedFirmwareStatusNotificationConfirmation} to reply with.
    */
-  SignedFirmwareStatusNotificationConfirmation handleSignedFirmwareStatusNotificationRequest(UUID sessionIndex, SignedFirmwareStatusNotificationRequest request);
+  SignedFirmwareStatusNotificationConfirmation handleSignedFirmwareStatusNotificationRequest(
+      UUID sessionIndex, SignedFirmwareStatusNotificationRequest request);
 }

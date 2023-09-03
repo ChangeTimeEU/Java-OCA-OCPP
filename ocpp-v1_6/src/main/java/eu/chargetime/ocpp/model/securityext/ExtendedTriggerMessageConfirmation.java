@@ -30,23 +30,20 @@ package eu.chargetime.ocpp.model.securityext;
 import eu.chargetime.ocpp.model.Confirmation;
 import eu.chargetime.ocpp.model.securityext.types.TriggerMessageStatusEnumType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class ExtendedTriggerMessageConfirmation extends Confirmation {
 
   private TriggerMessageStatusEnumType status;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private ExtendedTriggerMessageConfirmation() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private ExtendedTriggerMessageConfirmation() {}
 
   /**
    * Handle required fields.
    *
-   * @param status TriggerMessageStatusEnumType. See {@link #setStatus(TriggerMessageStatusEnumType)}
+   * @param status TriggerMessageStatusEnumType. See {@link
+   *     #setStatus(TriggerMessageStatusEnumType)}
    */
   public ExtendedTriggerMessageConfirmation(TriggerMessageStatusEnumType status) {
     setStatus(status);
@@ -91,7 +88,8 @@ public class ExtendedTriggerMessageConfirmation extends Confirmation {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("status", status)
-      .add("isValid", validate()).toString();
+        .add("status", status)
+        .add("isValid", validate())
+        .toString();
   }
 }

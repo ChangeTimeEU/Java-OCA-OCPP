@@ -30,7 +30,6 @@ import eu.chargetime.ocpp.model.RequestWithId;
 import eu.chargetime.ocpp.model.remotetrigger.TriggerMessageRequest;
 import eu.chargetime.ocpp.model.securityext.types.FirmwareStatusEnumType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class SignedFirmwareStatusNotificationRequest extends RequestWithId {
@@ -38,11 +37,8 @@ public class SignedFirmwareStatusNotificationRequest extends RequestWithId {
   private FirmwareStatusEnumType status;
   private Integer requestId;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private SignedFirmwareStatusNotificationRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private SignedFirmwareStatusNotificationRequest() {}
 
   /**
    * Handle required fields.
@@ -72,10 +68,10 @@ public class SignedFirmwareStatusNotificationRequest extends RequestWithId {
   }
 
   /**
-   * The request id that was provided in the {@link SignedUpdateFirmwareRequest}
-   * that started this firmware update. This field is mandatory, unless the message
-   * was triggered by a {@link TriggerMessageRequest} or the {@link ExtendedTriggerMessageRequest} AND
-   * there is no firmware update ongoing.
+   * The request id that was provided in the {@link SignedUpdateFirmwareRequest} that started this
+   * firmware update. This field is mandatory, unless the message was triggered by a {@link
+   * TriggerMessageRequest} or the {@link ExtendedTriggerMessageRequest} AND there is no firmware
+   * update ongoing.
    *
    * @return Integer
    */
@@ -84,10 +80,10 @@ public class SignedFirmwareStatusNotificationRequest extends RequestWithId {
   }
 
   /**
-   * Optional. The request id that was provided in the {@link SignedUpdateFirmwareRequest}
-   * that started this firmware update. This field is mandatory, unless the message
-   * was triggered by a {@link TriggerMessageRequest} or the {@link ExtendedTriggerMessageRequest} AND
-   * there is no firmware update ongoing.
+   * Optional. The request id that was provided in the {@link SignedUpdateFirmwareRequest} that
+   * started this firmware update. This field is mandatory, unless the message was triggered by a
+   * {@link TriggerMessageRequest} or the {@link ExtendedTriggerMessageRequest} AND there is no
+   * firmware update ongoing.
    *
    * @param requestId Integer
    */
@@ -110,8 +106,7 @@ public class SignedFirmwareStatusNotificationRequest extends RequestWithId {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     SignedFirmwareStatusNotificationRequest that = (SignedFirmwareStatusNotificationRequest) o;
-    return Objects.equals(status, that.status)
-      && Objects.equals(requestId, that.requestId);
+    return Objects.equals(status, that.status) && Objects.equals(requestId, that.requestId);
   }
 
   @Override
@@ -122,8 +117,9 @@ public class SignedFirmwareStatusNotificationRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("status", status)
-      .add("requestId", requestId)
-      .add("isValid", validate()).toString();
+        .add("status", status)
+        .add("requestId", requestId)
+        .add("isValid", validate())
+        .toString();
   }
 }

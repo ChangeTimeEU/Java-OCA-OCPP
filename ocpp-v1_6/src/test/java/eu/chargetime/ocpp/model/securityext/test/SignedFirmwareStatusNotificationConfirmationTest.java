@@ -26,17 +26,18 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
+import static org.junit.Assert.assertTrue;
+
 import eu.chargetime.ocpp.model.securityext.SignedFirmwareStatusNotificationConfirmation;
 import org.junit.Test;
-
-import static org.junit.Assert.assertTrue;
 
 public class SignedFirmwareStatusNotificationConfirmationTest {
 
   @Test
   public void validate_constructor_returnsTrue() {
     // Given
-    SignedFirmwareStatusNotificationConfirmation request = new SignedFirmwareStatusNotificationConfirmation();
+    SignedFirmwareStatusNotificationConfirmation request =
+        new SignedFirmwareStatusNotificationConfirmation();
 
     // When
     boolean actual = request.validate();
@@ -44,5 +45,4 @@ public class SignedFirmwareStatusNotificationConfirmationTest {
     // Then
     assertTrue(actual);
   }
-
 }

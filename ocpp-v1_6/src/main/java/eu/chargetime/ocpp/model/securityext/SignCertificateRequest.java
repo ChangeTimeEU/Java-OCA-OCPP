@@ -31,24 +31,20 @@ import eu.chargetime.ocpp.model.validation.StringMaxLengthValidationRule;
 import eu.chargetime.ocpp.model.validation.Validator;
 import eu.chargetime.ocpp.model.validation.ValidatorBuilder;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class SignCertificateRequest extends RequestWithId {
 
   private static final transient Validator csrValidator =
-    new ValidatorBuilder()
-      .addRule(new StringMaxLengthValidationRule(5500))
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder()
+          .addRule(new StringMaxLengthValidationRule(5500))
+          .setRequired(true)
+          .build();
 
   private String csr;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private SignCertificateRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private SignCertificateRequest() {}
 
   /**
    * Handle required fields.
@@ -60,9 +56,8 @@ public class SignCertificateRequest extends RequestWithId {
   }
 
   /**
-   * The Charge Point SHALL send the public key in form of a Certificate
-   * Signing Request (CSR) as described in RFC 2986 and then PEM encoded,
-   * using the {@link SignCertificateRequest} message.
+   * The Charge Point SHALL send the public key in form of a Certificate Signing Request (CSR) as
+   * described in RFC 2986 and then PEM encoded, using the {@link SignCertificateRequest} message.
    *
    * @return string[0..5500]
    */
@@ -71,9 +66,9 @@ public class SignCertificateRequest extends RequestWithId {
   }
 
   /**
-   * Required. The Charge Point SHALL send the public key in form of a Certificate
-   * Signing Request (CSR) as described in RFC 2986 and then PEM encoded,
-   * using the {@link SignCertificateRequest} message.
+   * Required. The Charge Point SHALL send the public key in form of a Certificate Signing Request
+   * (CSR) as described in RFC 2986 and then PEM encoded, using the {@link SignCertificateRequest}
+   * message.
    *
    * @param csr string[0..5500]
    */
@@ -107,8 +102,6 @@ public class SignCertificateRequest extends RequestWithId {
 
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper(this)
-      .add("csr", csr)
-      .add("isValid", validate()).toString();
+    return MoreObjects.toStringHelper(this).add("csr", csr).add("isValid", validate()).toString();
   }
 }

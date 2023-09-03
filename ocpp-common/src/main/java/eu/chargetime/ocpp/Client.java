@@ -97,7 +97,8 @@ public class Client {
           }
 
           @Override
-          public boolean asyncCompleteRequest(String uniqueId, Confirmation confirmation) throws UnsupportedFeatureException, OccurenceConstraintException {
+          public boolean asyncCompleteRequest(String uniqueId, Confirmation confirmation)
+              throws UnsupportedFeatureException, OccurenceConstraintException {
             return session.completePendingPromise(uniqueId, confirmation);
           }
 
@@ -171,7 +172,8 @@ public class Client {
     return this.session.getSessionId();
   }
 
-  public boolean asyncCompleteRequest(String uniqueId, Confirmation confirmation) throws UnsupportedFeatureException, OccurenceConstraintException {
+  public boolean asyncCompleteRequest(String uniqueId, Confirmation confirmation)
+      throws UnsupportedFeatureException, OccurenceConstraintException {
     return session.completePendingPromise(uniqueId, confirmation);
   }
 }

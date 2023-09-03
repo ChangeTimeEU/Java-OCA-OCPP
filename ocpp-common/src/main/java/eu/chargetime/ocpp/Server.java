@@ -117,8 +117,10 @@ public class Server {
                             .handleRequest(sessionIdOptional.get(), request);
                       } else {
                         logger.error(
-                            "Unable to handle request ({}), the active session was not found for {}.",
-                            request, session.getSessionId());
+                            "Unable to handle request ({}), the active session was not found for"
+                                + " {}.",
+                            request,
+                            session.getSessionId());
                         throw new IllegalStateException("Active session not found");
                       }
                     } else {
@@ -127,7 +129,8 @@ public class Server {
                   }
 
                   @Override
-                  public boolean asyncCompleteRequest(String uniqueId, Confirmation confirmation) throws UnsupportedFeatureException, OccurenceConstraintException {
+                  public boolean asyncCompleteRequest(String uniqueId, Confirmation confirmation)
+                      throws UnsupportedFeatureException, OccurenceConstraintException {
                     return session.completePendingPromise(uniqueId, confirmation);
                   }
 
@@ -233,7 +236,8 @@ public class Server {
    * @return a boolean indicating if pending request was found.
    * @throws NotConnectedException Thrown if session with passed sessionIndex is not found
    */
-  public boolean asyncCompleteRequest(UUID sessionIndex, String uniqueId, Confirmation confirmation) throws NotConnectedException, UnsupportedFeatureException, OccurenceConstraintException {
+  public boolean asyncCompleteRequest(UUID sessionIndex, String uniqueId, Confirmation confirmation)
+      throws NotConnectedException, UnsupportedFeatureException, OccurenceConstraintException {
     ISession session = sessions.get(sessionIndex);
 
     if (session == null) {
@@ -245,7 +249,6 @@ public class Server {
 
     return session.completePendingPromise(uniqueId, confirmation);
   }
-
 
   public boolean isSessionOpen(UUID sessionIndex) {
     return sessions.containsKey(sessionIndex);

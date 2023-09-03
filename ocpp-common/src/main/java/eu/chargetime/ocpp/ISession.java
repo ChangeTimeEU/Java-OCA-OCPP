@@ -40,7 +40,8 @@ public interface ISession {
 
   void sendRequest(String action, Request payload, String uuid);
 
-  boolean completePendingPromise(String id, Confirmation confirmation) throws UnsupportedFeatureException, OccurenceConstraintException;
+  boolean completePendingPromise(String id, Confirmation confirmation)
+      throws UnsupportedFeatureException, OccurenceConstraintException;
 
   void close();
 }

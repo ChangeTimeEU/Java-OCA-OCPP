@@ -30,7 +30,6 @@ import eu.chargetime.ocpp.PropertyConstraintException;
 import eu.chargetime.ocpp.model.RequestWithId;
 import eu.chargetime.ocpp.model.securityext.types.MessageTriggerEnumType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class ExtendedTriggerMessageRequest extends RequestWithId {
@@ -38,16 +37,14 @@ public class ExtendedTriggerMessageRequest extends RequestWithId {
   private MessageTriggerEnumType requestedMessage;
   private Integer connectorId;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private ExtendedTriggerMessageRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private ExtendedTriggerMessageRequest() {}
 
   /**
    * Handle required fields.
    *
-   * @param requestedMessage MessageTriggerEnumType. See {@link #setRequestedMessage(MessageTriggerEnumType)}
+   * @param requestedMessage MessageTriggerEnumType. See {@link
+   *     #setRequestedMessage(MessageTriggerEnumType)}
    */
   public ExtendedTriggerMessageRequest(MessageTriggerEnumType requestedMessage) {
     setRequestedMessage(requestedMessage);
@@ -99,8 +96,7 @@ public class ExtendedTriggerMessageRequest extends RequestWithId {
 
   @Override
   public boolean validate() {
-    return requestedMessage != null
-      && (connectorId == null || connectorId > 0);
+    return requestedMessage != null && (connectorId == null || connectorId > 0);
   }
 
   @Override
@@ -109,7 +105,7 @@ public class ExtendedTriggerMessageRequest extends RequestWithId {
     if (o == null || getClass() != o.getClass()) return false;
     ExtendedTriggerMessageRequest that = (ExtendedTriggerMessageRequest) o;
     return Objects.equals(requestedMessage, that.requestedMessage)
-      && Objects.equals(connectorId, that.connectorId);
+        && Objects.equals(connectorId, that.connectorId);
   }
 
   @Override
@@ -120,8 +116,9 @@ public class ExtendedTriggerMessageRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("requestedMessage", requestedMessage)
-      .add("connectorId", connectorId)
-      .add("isValid", validate()).toString();
+        .add("requestedMessage", requestedMessage)
+        .add("connectorId", connectorId)
+        .add("isValid", validate())
+        .toString();
   }
 }

@@ -26,10 +26,10 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
+import static org.junit.Assert.assertTrue;
+
 import eu.chargetime.ocpp.model.securityext.SecurityEventNotificationConfirmation;
 import org.junit.Test;
-
-import static org.junit.Assert.assertTrue;
 
 public class SecurityEventNotificationConfirmationTest {
 
@@ -44,5 +44,4 @@ public class SecurityEventNotificationConfirmationTest {
     // Then
     assertTrue(actual);
   }
-
 }

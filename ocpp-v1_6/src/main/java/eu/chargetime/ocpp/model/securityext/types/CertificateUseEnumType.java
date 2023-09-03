@@ -30,16 +30,13 @@ import eu.chargetime.ocpp.model.securityext.GetInstalledCertificateIdsRequest;
 import eu.chargetime.ocpp.model.securityext.InstallCertificateRequest;
 
 /**
- * CertificateUseEnumType is used by {@link GetInstalledCertificateIdsRequest}, {@link InstallCertificateRequest}
+ * CertificateUseEnumType is used by {@link GetInstalledCertificateIdsRequest}, {@link
+ * InstallCertificateRequest}
  */
 public enum CertificateUseEnumType {
-  /**
-   * Root certificate, used by the CA to sign the Central System and Charge Point certificate.
-   */
+  /** Root certificate, used by the CA to sign the Central System and Charge Point certificate. */
   CentralSystemRootCertificate,
 
-  /**
-   * Root certificate for verification of the Manufacturer certificate.
-   */
+  /** Root certificate for verification of the Manufacturer certificate. */
   ManufacturerRootCertificate
 }

@@ -26,10 +26,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-
-/**
- * Callback that can perform actions after the confirmation is sent back to the Charge Point
- */
+/** Callback that can perform actions after the confirmation is sent back to the Charge Point */
 public interface ConfirmationCompletedHandler {
-    void onConfirmationCompleted();
+  void onConfirmationCompleted();
 }

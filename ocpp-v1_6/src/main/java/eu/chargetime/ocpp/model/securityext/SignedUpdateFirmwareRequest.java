@@ -29,7 +29,6 @@ package eu.chargetime.ocpp.model.securityext;
 import eu.chargetime.ocpp.model.RequestWithId;
 import eu.chargetime.ocpp.model.securityext.types.FirmwareType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class SignedUpdateFirmwareRequest extends RequestWithId {
@@ -39,17 +38,14 @@ public class SignedUpdateFirmwareRequest extends RequestWithId {
   private Integer requestId;
   private FirmwareType firmware;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private SignedUpdateFirmwareRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private SignedUpdateFirmwareRequest() {}
 
   /**
    * Handle required fields.
    *
    * @param requestId Integer. See {@link #setRequestId(Integer)}
-   * @param firmware  FirmwareType. See {@link #setFirmware(FirmwareType)}
+   * @param firmware FirmwareType. See {@link #setFirmware(FirmwareType)}
    */
   public SignedUpdateFirmwareRequest(Integer requestId, FirmwareType firmware) {
     setRequestId(requestId);
@@ -57,9 +53,9 @@ public class SignedUpdateFirmwareRequest extends RequestWithId {
   }
 
   /**
-   * This specifies how many times Charge Point must try to download the
-   * firmware before giving up. If this field is not present, it is left to Charge Point to
-   * decide how many times it wants to retry.
+   * This specifies how many times Charge Point must try to download the firmware before giving up.
+   * If this field is not present, it is left to Charge Point to decide how many times it wants to
+   * retry.
    *
    * @return Integer
    */
@@ -68,9 +64,9 @@ public class SignedUpdateFirmwareRequest extends RequestWithId {
   }
 
   /**
-   * Optional. This specifies how many times Charge Point must try to download the
-   * firmware before giving up. If this field is not present, it is left to Charge Point to
-   * decide how many times it wants to retry.
+   * Optional. This specifies how many times Charge Point must try to download the firmware before
+   * giving up. If this field is not present, it is left to Charge Point to decide how many times it
+   * wants to retry.
    *
    * @param retries Integer
    */
@@ -79,9 +75,8 @@ public class SignedUpdateFirmwareRequest extends RequestWithId {
   }
 
   /**
-   * The interval in seconds after which a retry may be attempted. If this
-   * field is not present, it is left to Charge Point to decide how long to wait between
-   * attempts.
+   * The interval in seconds after which a retry may be attempted. If this field is not present, it
+   * is left to Charge Point to decide how long to wait between attempts.
    *
    * @return Integer
    */
@@ -90,9 +85,8 @@ public class SignedUpdateFirmwareRequest extends RequestWithId {
   }
 
   /**
-   * Optional. The interval in seconds after which a retry may be attempted. If this
-   * field is not present, it is left to Charge Point to decide how long to wait between
-   * attempts.
+   * Optional. The interval in seconds after which a retry may be attempted. If this field is not
+   * present, it is left to Charge Point to decide how long to wait between attempts.
    *
    * @param retryInterval Integer
    */
@@ -152,9 +146,9 @@ public class SignedUpdateFirmwareRequest extends RequestWithId {
     if (o == null || getClass() != o.getClass()) return false;
     SignedUpdateFirmwareRequest that = (SignedUpdateFirmwareRequest) o;
     return Objects.equals(retries, that.retries)
-      && Objects.equals(retryInterval, that.retryInterval)
-      && Objects.equals(requestId, that.requestId)
-      && Objects.equals(firmware, that.firmware);
+        && Objects.equals(retryInterval, that.retryInterval)
+        && Objects.equals(requestId, that.requestId)
+        && Objects.equals(firmware, that.firmware);
   }
 
   @Override
@@ -165,10 +159,11 @@ public class SignedUpdateFirmwareRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("retries", retries)
-      .add("retryInterval", retryInterval)
-      .add("requestId", requestId)
-      .add("firmware", firmware)
-      .add("isValid", validate()).toString();
+        .add("retries", retries)
+        .add("retryInterval", retryInterval)
+        .add("requestId", requestId)
+        .add("firmware", firmware)
+        .add("isValid", validate())
+        .toString();
   }
 }

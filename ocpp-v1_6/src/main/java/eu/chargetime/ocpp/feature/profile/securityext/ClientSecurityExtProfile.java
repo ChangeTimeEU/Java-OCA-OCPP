@@ -55,7 +55,6 @@ import eu.chargetime.ocpp.model.securityext.SignedFirmwareStatusNotificationRequ
 import eu.chargetime.ocpp.model.securityext.SignedUpdateFirmwareRequest;
 import eu.chargetime.ocpp.model.securityext.types.FirmwareStatusEnumType;
 import eu.chargetime.ocpp.model.securityext.types.UploadLogStatusEnumType;
-
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -97,15 +96,19 @@ public class ClientSecurityExtProfile implements Profile {
     } else if (request instanceof DeleteCertificateRequest) {
       result = eventHandler.handleDeleteCertificateRequest((DeleteCertificateRequest) request);
     } else if (request instanceof ExtendedTriggerMessageRequest) {
-      result = eventHandler.handleExtendedTriggerMessageRequest((ExtendedTriggerMessageRequest) request);
+      result =
+          eventHandler.handleExtendedTriggerMessageRequest((ExtendedTriggerMessageRequest) request);
     } else if (request instanceof GetInstalledCertificateIdsRequest) {
-      result = eventHandler.handleGetInstalledCertificateIdsRequest((GetInstalledCertificateIdsRequest) request);
+      result =
+          eventHandler.handleGetInstalledCertificateIdsRequest(
+              (GetInstalledCertificateIdsRequest) request);
     } else if (request instanceof GetLogRequest) {
       result = eventHandler.handleGetLogRequest((GetLogRequest) request);
     } else if (request instanceof InstallCertificateRequest) {
       result = eventHandler.handleInstallCertificateRequest((InstallCertificateRequest) request);
-    }else if (request instanceof SignedUpdateFirmwareRequest) {
-      result = eventHandler.handleSignedUpdateFirmwareRequest((SignedUpdateFirmwareRequest) request);
+    } else if (request instanceof SignedUpdateFirmwareRequest) {
+      result =
+          eventHandler.handleSignedUpdateFirmwareRequest((SignedUpdateFirmwareRequest) request);
     }
 
     return result;
@@ -118,7 +121,8 @@ public class ClientSecurityExtProfile implements Profile {
    * @see LogStatusNotificationRequest
    * @see LogStatusNotificationFeature
    */
-  public LogStatusNotificationRequest createLogStatusNotificationRequest(UploadLogStatusEnumType status) {
+  public LogStatusNotificationRequest createLogStatusNotificationRequest(
+      UploadLogStatusEnumType status) {
     return new LogStatusNotificationRequest(status);
   }
 
@@ -129,7 +133,8 @@ public class ClientSecurityExtProfile implements Profile {
    * @see SecurityEventNotificationRequest
    * @see SecurityEventNotificationFeature
    */
-  public SecurityEventNotificationRequest createSecurityEventNotificationRequest(String type, ZonedDateTime timestamp) {
+  public SecurityEventNotificationRequest createSecurityEventNotificationRequest(
+      String type, ZonedDateTime timestamp) {
     return new SecurityEventNotificationRequest(type, timestamp);
   }
 
@@ -151,7 +156,8 @@ public class ClientSecurityExtProfile implements Profile {
    * @see SignedFirmwareStatusNotificationRequest
    * @see SignedFirmwareStatusNotificationFeature
    */
-  public SignedFirmwareStatusNotificationRequest createSignedFirmwareStatusNotificationRequest(FirmwareStatusEnumType status) {
+  public SignedFirmwareStatusNotificationRequest createSignedFirmwareStatusNotificationRequest(
+      FirmwareStatusEnumType status) {
     return new SignedFirmwareStatusNotificationRequest(status);
   }
 }

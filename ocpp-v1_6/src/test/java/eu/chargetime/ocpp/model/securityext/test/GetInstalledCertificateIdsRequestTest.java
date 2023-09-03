@@ -26,12 +26,12 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import eu.chargetime.ocpp.model.securityext.GetInstalledCertificateIdsRequest;
 import eu.chargetime.ocpp.model.securityext.types.CertificateUseEnumType;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class GetInstalledCertificateIdsRequestTest {
 
@@ -39,7 +39,8 @@ public class GetInstalledCertificateIdsRequestTest {
   public void validate_constructor_returnsTrue() {
     // Given
     CertificateUseEnumType certificateType = CertificateUseEnumType.CentralSystemRootCertificate;
-    GetInstalledCertificateIdsRequest request = new GetInstalledCertificateIdsRequest(certificateType);
+    GetInstalledCertificateIdsRequest request =
+        new GetInstalledCertificateIdsRequest(certificateType);
 
     // When
     boolean actual = request.validate();

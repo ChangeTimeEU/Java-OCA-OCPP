@@ -26,15 +26,14 @@ package eu.chargetime.ocpp.model.securityext.test.types;
    SOFTWARE.
 */
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import eu.chargetime.ocpp.PropertyConstraintException;
 import eu.chargetime.ocpp.model.securityext.types.LogParametersType;
 import eu.chargetime.ocpp.utilities.TestUtilities;
-import org.junit.Test;
-
 import java.time.ZonedDateTime;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 public class LogParametersTypeTest {
 

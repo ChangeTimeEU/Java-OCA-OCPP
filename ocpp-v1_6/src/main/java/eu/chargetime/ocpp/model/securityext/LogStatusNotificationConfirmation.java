@@ -29,7 +29,6 @@ package eu.chargetime.ocpp.model.securityext;
 
 import eu.chargetime.ocpp.model.Confirmation;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class LogStatusNotificationConfirmation extends Confirmation {
@@ -51,7 +50,6 @@ public class LogStatusNotificationConfirmation extends Confirmation {
 
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper(this)
-      .add("isValid", validate()).toString();
+    return MoreObjects.toStringHelper(this).add("isValid", validate()).toString();
   }
 }

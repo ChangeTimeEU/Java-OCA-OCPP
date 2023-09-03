@@ -26,12 +26,12 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import eu.chargetime.ocpp.model.securityext.LogStatusNotificationRequest;
 import eu.chargetime.ocpp.model.securityext.types.UploadLogStatusEnumType;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class LogStatusNotificationRequestTest {
 

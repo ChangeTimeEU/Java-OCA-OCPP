@@ -35,42 +35,26 @@ import eu.chargetime.ocpp.model.securityext.LogStatusNotificationRequest;
 import eu.chargetime.ocpp.model.securityext.SignCertificateRequest;
 import eu.chargetime.ocpp.model.securityext.SignedFirmwareStatusNotificationRequest;
 
-/**
- * MessageTriggerEnumType is used by {@link ExtendedTriggerMessageRequest}
- */
+/** MessageTriggerEnumType is used by {@link ExtendedTriggerMessageRequest} */
 public enum MessageTriggerEnumType {
-  /**
-   * To trigger {@link BootNotificationRequest}
-   */
+  /** To trigger {@link BootNotificationRequest} */
   BootNotification,
 
-  /**
-   * To trigger {@link LogStatusNotificationRequest}.
-   */
+  /** To trigger {@link LogStatusNotificationRequest}. */
   LogStatusNotification,
 
-  /**
-   * To trigger {@link SignedFirmwareStatusNotificationRequest}.
-   */
+  /** To trigger {@link SignedFirmwareStatusNotificationRequest}. */
   FirmwareStatusNotification,
 
-  /**
-   * To trigger {@link HeartbeatRequest}.
-   */
+  /** To trigger {@link HeartbeatRequest}. */
   Heartbeat,
 
-  /**
-   * To trigger {@link MeterValuesRequest}.
-   */
+  /** To trigger {@link MeterValuesRequest}. */
   MeterValues,
 
-  /**
-   * To trigger {@link SignCertificateRequest} with certificateType: ChargePointCertificate.
-   */
+  /** To trigger {@link SignCertificateRequest} with certificateType: ChargePointCertificate. */
   SignChargePointCertificate,
 
-  /**
-   * To trigger {@link StatusNotificationRequest}.
-   */
+  /** To trigger {@link StatusNotificationRequest}. */
   StatusNotification
 }

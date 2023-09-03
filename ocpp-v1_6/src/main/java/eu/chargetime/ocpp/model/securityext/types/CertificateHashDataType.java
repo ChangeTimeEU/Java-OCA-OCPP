@@ -32,22 +32,18 @@ import eu.chargetime.ocpp.model.validation.StringMaxLengthValidationRule;
 import eu.chargetime.ocpp.model.validation.Validator;
 import eu.chargetime.ocpp.model.validation.ValidatorBuilder;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class CertificateHashDataType implements Validatable {
   private static final transient Validator identifierString128Validator =
-    new ValidatorBuilder()
-      .addRule(OCPPSecurityExtDatatypes.identifierString())
-      .addRule(new StringMaxLengthValidationRule(128))
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder()
+          .addRule(OCPPSecurityExtDatatypes.identifierString())
+          .addRule(new StringMaxLengthValidationRule(128))
+          .setRequired(true)
+          .build();
 
   private static final transient Validator serialNumberValidator =
-    new ValidatorBuilder()
-      .addRule(OCPPSecurityExtDatatypes.string40())
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder().addRule(OCPPSecurityExtDatatypes.string40()).setRequired(true).build();
 
   private HashAlgorithmEnumType hashAlgorithm;
   private String issuerNameHash;
@@ -132,9 +128,9 @@ public class CertificateHashDataType implements Validatable {
   @Override
   public boolean validate() {
     return hashAlgorithm != null
-      && identifierString128Validator.safeValidate(issuerNameHash)
-      && identifierString128Validator.safeValidate(issuerKeyHash)
-      && serialNumberValidator.safeValidate(serialNumber);
+        && identifierString128Validator.safeValidate(issuerNameHash)
+        && identifierString128Validator.safeValidate(issuerKeyHash)
+        && serialNumberValidator.safeValidate(serialNumber);
   }
 
   @Override
@@ -143,9 +139,9 @@ public class CertificateHashDataType implements Validatable {
     if (o == null || getClass() != o.getClass()) return false;
     CertificateHashDataType that = (CertificateHashDataType) o;
     return Objects.equals(hashAlgorithm, that.hashAlgorithm)
-      && Objects.equals(issuerNameHash, that.issuerNameHash)
-      && Objects.equals(issuerKeyHash, that.issuerKeyHash)
-      && Objects.equals(serialNumber, that.serialNumber);
+        && Objects.equals(issuerNameHash, that.issuerNameHash)
+        && Objects.equals(issuerKeyHash, that.issuerKeyHash)
+        && Objects.equals(serialNumber, that.serialNumber);
   }
 
   @Override
@@ -156,10 +152,10 @@ public class CertificateHashDataType implements Validatable {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("hashAlgorithm", hashAlgorithm)
-      .add("issuerNameHash", issuerNameHash)
-      .add("issuerKeyHash", issuerKeyHash)
-      .add("serialNumber", serialNumber)
-      .toString();
+        .add("hashAlgorithm", hashAlgorithm)
+        .add("issuerNameHash", issuerNameHash)
+        .add("issuerKeyHash", issuerKeyHash)
+        .add("serialNumber", serialNumber)
+        .toString();
   }
 }

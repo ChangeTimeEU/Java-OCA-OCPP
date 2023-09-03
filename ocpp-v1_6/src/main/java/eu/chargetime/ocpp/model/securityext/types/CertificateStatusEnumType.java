@@ -28,22 +28,20 @@ package eu.chargetime.ocpp.model.securityext.types;
 
 import eu.chargetime.ocpp.model.securityext.InstallCertificateConfirmation;
 
-/**
- * CertificateStatusEnumType is used by {@link InstallCertificateConfirmation}
- */
+/** CertificateStatusEnumType is used by {@link InstallCertificateConfirmation} */
 public enum CertificateStatusEnumType {
-  /**
-   * The installation of the certificate succeeded.
-   */
+  /** The installation of the certificate succeeded. */
   Accepted,
 
   /**
-   * The certificate is valid and correct, but there is another reason the installation did not succeed.
+   * The certificate is valid and correct, but there is another reason the installation did not
+   * succeed.
    */
   Failed,
 
   /**
-   * The certificate is invalid and/or incorrect OR the CPO tries to install more certificates than allowed.
+   * The certificate is invalid and/or incorrect OR the CPO tries to install more certificates than
+   * allowed.
    */
   Rejected
 }

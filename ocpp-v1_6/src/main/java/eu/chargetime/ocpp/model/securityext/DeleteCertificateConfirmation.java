@@ -30,23 +30,20 @@ package eu.chargetime.ocpp.model.securityext;
 import eu.chargetime.ocpp.model.Confirmation;
 import eu.chargetime.ocpp.model.securityext.types.DeleteCertificateStatusEnumType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class DeleteCertificateConfirmation extends Confirmation {
 
   private DeleteCertificateStatusEnumType status;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private DeleteCertificateConfirmation() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private DeleteCertificateConfirmation() {}
 
   /**
    * Handle required fields.
    *
-   * @param status DeleteCertificateStatusEnumType. See {@link #setStatus(DeleteCertificateStatusEnumType)}
+   * @param status DeleteCertificateStatusEnumType. See {@link
+   *     #setStatus(DeleteCertificateStatusEnumType)}
    */
   public DeleteCertificateConfirmation(DeleteCertificateStatusEnumType status) {
     setStatus(status);
@@ -91,7 +88,8 @@ public class DeleteCertificateConfirmation extends Confirmation {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("status", status)
-      .add("isValid", validate()).toString();
+        .add("status", status)
+        .add("isValid", validate())
+        .toString();
   }
 }

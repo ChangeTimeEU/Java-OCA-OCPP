@@ -59,7 +59,6 @@ import eu.chargetime.ocpp.model.securityext.types.FirmwareType;
 import eu.chargetime.ocpp.model.securityext.types.LogEnumType;
 import eu.chargetime.ocpp.model.securityext.types.LogParametersType;
 import eu.chargetime.ocpp.model.securityext.types.MessageTriggerEnumType;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -96,13 +95,19 @@ public class ServerSecurityExtProfile implements Profile {
     Confirmation result = null;
 
     if (request instanceof LogStatusNotificationRequest) {
-      result = handler.handleLogStatusNotificationRequest(sessionIndex, (LogStatusNotificationRequest) request);
+      result =
+          handler.handleLogStatusNotificationRequest(
+              sessionIndex, (LogStatusNotificationRequest) request);
     } else if (request instanceof SecurityEventNotificationRequest) {
-      result = handler.handleSecurityEventNotificationRequest(sessionIndex, (SecurityEventNotificationRequest) request);
+      result =
+          handler.handleSecurityEventNotificationRequest(
+              sessionIndex, (SecurityEventNotificationRequest) request);
     } else if (request instanceof SignCertificateRequest) {
       result = handler.handleSignCertificateRequest(sessionIndex, (SignCertificateRequest) request);
     } else if (request instanceof SignedFirmwareStatusNotificationRequest) {
-      result = handler.handleSignedFirmwareStatusNotificationRequest(sessionIndex, (SignedFirmwareStatusNotificationRequest) request);
+      result =
+          handler.handleSignedFirmwareStatusNotificationRequest(
+              sessionIndex, (SignedFirmwareStatusNotificationRequest) request);
     }
 
     return result;
@@ -126,7 +131,8 @@ public class ServerSecurityExtProfile implements Profile {
    * @see DeleteCertificateRequest
    * @see DeleteCertificateFeature
    */
-  public DeleteCertificateRequest createDeleteCertificateRequest(CertificateHashDataType certificateHashData) {
+  public DeleteCertificateRequest createDeleteCertificateRequest(
+      CertificateHashDataType certificateHashData) {
     return new DeleteCertificateRequest(certificateHashData);
   }
 
@@ -137,7 +143,8 @@ public class ServerSecurityExtProfile implements Profile {
    * @see ExtendedTriggerMessageRequest
    * @see ExtendedTriggerMessageFeature
    */
-  public ExtendedTriggerMessageRequest createExtendedTriggerMessageRequest(MessageTriggerEnumType requestedMessage) {
+  public ExtendedTriggerMessageRequest createExtendedTriggerMessageRequest(
+      MessageTriggerEnumType requestedMessage) {
     return new ExtendedTriggerMessageRequest(requestedMessage);
   }
 
@@ -148,7 +155,8 @@ public class ServerSecurityExtProfile implements Profile {
    * @see GetInstalledCertificateIdsRequest
    * @see GetInstalledCertificateIdsFeature
    */
-  public GetInstalledCertificateIdsRequest createGetInstalledCertificateIdsRequest(CertificateUseEnumType certificateType) {
+  public GetInstalledCertificateIdsRequest createGetInstalledCertificateIdsRequest(
+      CertificateUseEnumType certificateType) {
     return new GetInstalledCertificateIdsRequest(certificateType);
   }
 
@@ -159,7 +167,8 @@ public class ServerSecurityExtProfile implements Profile {
    * @see GetLogRequest
    * @see GetLogFeature
    */
-  public GetLogRequest createGetLogRequest(LogEnumType logType, Integer requestId, LogParametersType log) {
+  public GetLogRequest createGetLogRequest(
+      LogEnumType logType, Integer requestId, LogParametersType log) {
     return new GetLogRequest(logType, requestId, log);
   }
 
@@ -170,7 +179,8 @@ public class ServerSecurityExtProfile implements Profile {
    * @see InstallCertificateRequest
    * @see InstallCertificateFeature
    */
-  public InstallCertificateRequest createInstallCertificateRequest(CertificateUseEnumType certificateType, String certificate) {
+  public InstallCertificateRequest createInstallCertificateRequest(
+      CertificateUseEnumType certificateType, String certificate) {
     return new InstallCertificateRequest(certificateType, certificate);
   }
 
@@ -181,7 +191,8 @@ public class ServerSecurityExtProfile implements Profile {
    * @see SignedUpdateFirmwareRequest
    * @see SignedUpdateFirmwareFeature
    */
-  public SignedUpdateFirmwareRequest createSignedUpdateFirmwareRequest(Integer requestId, FirmwareType firmware) {
+  public SignedUpdateFirmwareRequest createSignedUpdateFirmwareRequest(
+      Integer requestId, FirmwareType firmware) {
     return new SignedUpdateFirmwareRequest(requestId, firmware);
   }
 }

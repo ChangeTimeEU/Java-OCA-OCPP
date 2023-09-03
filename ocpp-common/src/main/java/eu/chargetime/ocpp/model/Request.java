@@ -30,6 +30,8 @@ SOFTWARE.
 /** Interface used to flag a model as Request payload. */
 public interface Request extends Validatable {
   boolean transactionRelated();
+
   String getOcppMessageId();
+
   void setOcppMessageId(String id);
 }

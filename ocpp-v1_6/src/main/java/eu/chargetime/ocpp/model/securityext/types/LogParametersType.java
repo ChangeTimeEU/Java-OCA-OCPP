@@ -31,16 +31,15 @@ import eu.chargetime.ocpp.model.validation.OCPPSecurityExtDatatypes;
 import eu.chargetime.ocpp.model.validation.Validator;
 import eu.chargetime.ocpp.model.validation.ValidatorBuilder;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
 public class LogParametersType implements Validatable {
   private static final transient Validator remoteLocationValidator =
-    new ValidatorBuilder()
-      .addRule(OCPPSecurityExtDatatypes.string512())
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder()
+          .addRule(OCPPSecurityExtDatatypes.string512())
+          .setRequired(true)
+          .build();
 
   private String remoteLocation;
   private ZonedDateTime oldestTimestamp;
@@ -66,8 +65,8 @@ public class LogParametersType implements Validatable {
   }
 
   /**
-   * This contains the date and time of the oldest logging information to
-   * include in the diagnostics.
+   * This contains the date and time of the oldest logging information to include in the
+   * diagnostics.
    *
    * @return dateTime
    */
@@ -76,8 +75,8 @@ public class LogParametersType implements Validatable {
   }
 
   /**
-   * Optional. This contains the date and time of the oldest logging information to
-   * include in the diagnostics.
+   * Optional. This contains the date and time of the oldest logging information to include in the
+   * diagnostics.
    *
    * @param oldestTimestamp dateTime
    */
@@ -86,8 +85,8 @@ public class LogParametersType implements Validatable {
   }
 
   /**
-   * This contains the date and time of the latest logging information to
-   * include in the diagnostics.
+   * This contains the date and time of the latest logging information to include in the
+   * diagnostics.
    *
    * @return dateTime
    */
@@ -96,8 +95,8 @@ public class LogParametersType implements Validatable {
   }
 
   /**
-   * Optional. This contains the date and time of the latest logging information to
-   * include in the diagnostics.
+   * Optional. This contains the date and time of the latest logging information to include in the
+   * diagnostics.
    *
    * @param latestTimestamp dateTime
    */
@@ -116,8 +115,8 @@ public class LogParametersType implements Validatable {
     if (o == null || getClass() != o.getClass()) return false;
     LogParametersType that = (LogParametersType) o;
     return Objects.equals(remoteLocation, that.remoteLocation)
-      && Objects.equals(oldestTimestamp, that.oldestTimestamp)
-      && Objects.equals(latestTimestamp, that.latestTimestamp);
+        && Objects.equals(oldestTimestamp, that.oldestTimestamp)
+        && Objects.equals(latestTimestamp, that.latestTimestamp);
   }
 
   @Override
@@ -128,9 +127,9 @@ public class LogParametersType implements Validatable {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("remoteLocation", remoteLocation)
-      .add("oldestTimestamp", oldestTimestamp)
-      .add("latestTimestamp", latestTimestamp)
-      .toString();
+        .add("remoteLocation", remoteLocation)
+        .add("oldestTimestamp", oldestTimestamp)
+        .add("latestTimestamp", latestTimestamp)
+        .toString();
   }
 }

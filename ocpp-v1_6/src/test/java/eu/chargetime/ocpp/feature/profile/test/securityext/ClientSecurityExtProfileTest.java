@@ -1,5 +1,11 @@
 package eu.chargetime.ocpp.feature.profile.test.securityext;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import eu.chargetime.ocpp.feature.Feature;
 import eu.chargetime.ocpp.feature.profile.securityext.ClientSecurityExtEventHandler;
 import eu.chargetime.ocpp.feature.profile.securityext.ClientSecurityExtProfile;
@@ -36,20 +42,13 @@ import eu.chargetime.ocpp.model.securityext.SignedUpdateFirmwareConfirmation;
 import eu.chargetime.ocpp.model.securityext.SignedUpdateFirmwareRequest;
 import eu.chargetime.ocpp.model.securityext.types.FirmwareStatusEnumType;
 import eu.chargetime.ocpp.model.securityext.types.UploadLogStatusEnumType;
+import java.time.ZonedDateTime;
+import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.time.ZonedDateTime;
-import java.util.UUID;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /*
    ChargeTime.eu - Java-OCA-OCPP
@@ -83,8 +82,7 @@ public class ClientSecurityExtProfileTest extends ProfileTest {
 
   private ClientSecurityExtProfile profile;
 
-  @Mock
-  private ClientSecurityExtEventHandler handler;
+  @Mock private ClientSecurityExtEventHandler handler;
 
   @Before
   public void setup() {
@@ -99,15 +97,24 @@ public class ClientSecurityExtProfileTest extends ProfileTest {
     // then
     assertTrue(findFeature(features, "CertificateSigned") instanceof CertificateSignedFeature);
     assertTrue(findFeature(features, "DeleteCertificate") instanceof DeleteCertificateFeature);
-    assertTrue(findFeature(features, "ExtendedTriggerMessage") instanceof ExtendedTriggerMessageFeature);
-    assertTrue(findFeature(features, "GetInstalledCertificateIds") instanceof GetInstalledCertificateIdsFeature);
+    assertTrue(
+        findFeature(features, "ExtendedTriggerMessage") instanceof ExtendedTriggerMessageFeature);
+    assertTrue(
+        findFeature(features, "GetInstalledCertificateIds")
+            instanceof GetInstalledCertificateIdsFeature);
     assertTrue(findFeature(features, "GetLog") instanceof GetLogFeature);
     assertTrue(findFeature(features, "InstallCertificate") instanceof InstallCertificateFeature);
-    assertTrue(findFeature(features, "LogStatusNotification") instanceof LogStatusNotificationFeature);
-    assertTrue(findFeature(features, "SecurityEventNotification") instanceof SecurityEventNotificationFeature);
+    assertTrue(
+        findFeature(features, "LogStatusNotification") instanceof LogStatusNotificationFeature);
+    assertTrue(
+        findFeature(features, "SecurityEventNotification")
+            instanceof SecurityEventNotificationFeature);
     assertTrue(findFeature(features, "SignCertificate") instanceof SignCertificateFeature);
-    assertTrue(findFeature(features, "SignedFirmwareStatusNotification") instanceof SignedFirmwareStatusNotificationFeature);
-    assertTrue(findFeature(features, "SignedUpdateFirmware") instanceof SignedUpdateFirmwareFeature);
+    assertTrue(
+        findFeature(features, "SignedFirmwareStatusNotification")
+            instanceof SignedFirmwareStatusNotificationFeature);
+    assertTrue(
+        findFeature(features, "SignedUpdateFirmware") instanceof SignedUpdateFirmwareFeature);
   }
 
   @Test
@@ -130,7 +137,8 @@ public class ClientSecurityExtProfileTest extends ProfileTest {
     ZonedDateTime timestamp = ZonedDateTime.now();
 
     // When
-    SecurityEventNotificationRequest actual = profile.createSecurityEventNotificationRequest(type, timestamp);
+    SecurityEventNotificationRequest actual =
+        profile.createSecurityEventNotificationRequest(type, timestamp);
 
     // Then
     assertEquals(type, actual.getType());
@@ -156,7 +164,8 @@ public class ClientSecurityExtProfileTest extends ProfileTest {
     FirmwareStatusEnumType status = FirmwareStatusEnumType.Downloaded;
 
     // When
-    SignedFirmwareStatusNotificationRequest actual = profile.createSignedFirmwareStatusNotificationRequest(status);
+    SignedFirmwareStatusNotificationRequest actual =
+        profile.createSignedFirmwareStatusNotificationRequest(status);
 
     // Then
     assertEquals(status, actual.getStatus());
@@ -192,10 +201,12 @@ public class ClientSecurityExtProfileTest extends ProfileTest {
   }
 
   @Test
-  public void handleRequest_whenExtendedTriggerMessageRequest_callsHandleExtendedTriggerMessageRequest() {
+  public void
+      handleRequest_whenExtendedTriggerMessageRequest_callsHandleExtendedTriggerMessageRequest() {
     // Given
     ExtendedTriggerMessageRequest request = mock(ExtendedTriggerMessageRequest.class);
-    ExtendedTriggerMessageConfirmation confirmation = mock(ExtendedTriggerMessageConfirmation.class);
+    ExtendedTriggerMessageConfirmation confirmation =
+        mock(ExtendedTriggerMessageConfirmation.class);
     when(handler.handleExtendedTriggerMessageRequest(request)).thenReturn(confirmation);
 
     // When
@@ -206,10 +217,12 @@ public class ClientSecurityExtProfileTest extends ProfileTest {
   }
 
   @Test
-  public void handleRequest_whenGetInstalledCertificateIdsRequest_callsHandleGetInstalledCertificateIdsRequest() {
+  public void
+      handleRequest_whenGetInstalledCertificateIdsRequest_callsHandleGetInstalledCertificateIdsRequest() {
     // Given
     GetInstalledCertificateIdsRequest request = mock(GetInstalledCertificateIdsRequest.class);
-    GetInstalledCertificateIdsConfirmation confirmation = mock(GetInstalledCertificateIdsConfirmation.class);
+    GetInstalledCertificateIdsConfirmation confirmation =
+        mock(GetInstalledCertificateIdsConfirmation.class);
     when(handler.handleGetInstalledCertificateIdsRequest(request)).thenReturn(confirmation);
 
     // When
@@ -248,7 +261,8 @@ public class ClientSecurityExtProfileTest extends ProfileTest {
   }
 
   @Test
-  public void handleRequest_whenSignedUpdateFirmwareRequest_callsHandleSignedUpdateFirmwareRequest() {
+  public void
+      handleRequest_whenSignedUpdateFirmwareRequest_callsHandleSignedUpdateFirmwareRequest() {
     // Given
     SignedUpdateFirmwareRequest request = mock(SignedUpdateFirmwareRequest.class);
     SignedUpdateFirmwareConfirmation confirmation = mock(SignedUpdateFirmwareConfirmation.class);
@@ -260,5 +274,4 @@ public class ClientSecurityExtProfileTest extends ProfileTest {
     // Then
     assertEquals(confirmation, actual);
   }
-
 }

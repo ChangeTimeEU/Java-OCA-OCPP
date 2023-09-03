@@ -28,22 +28,14 @@ package eu.chargetime.ocpp.model.securityext.types;
 
 import eu.chargetime.ocpp.model.securityext.DeleteCertificateConfirmation;
 
-/**
- * DeleteCertificateStatusEnumType is used by {@link DeleteCertificateConfirmation}
- */
+/** DeleteCertificateStatusEnumType is used by {@link DeleteCertificateConfirmation} */
 public enum DeleteCertificateStatusEnumType {
-  /**
-   * Normal successful completion (no errors).
-   */
+  /** Normal successful completion (no errors). */
   Accepted,
 
-  /**
-   * Processing failure.
-   */
+  /** Processing failure. */
   Failed,
 
-  /**
-   * Requested resource not found.
-   */
+  /** Requested resource not found. */
   NotFound
 }

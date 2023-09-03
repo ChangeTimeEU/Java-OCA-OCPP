@@ -28,20 +28,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-
 import javax.xml.bind.annotation.XmlTransient;
 
 /** Interface used to flag a Model as a Confirmation payload. */
-
 public abstract class Confirmation implements Validatable {
-    private transient ConfirmationCompletedHandler completedHandler;
+  private transient ConfirmationCompletedHandler completedHandler;
 
-    @XmlTransient
-    public ConfirmationCompletedHandler getCompletedHandler() {
-        return completedHandler;
-    }
-    public void setCompletedHandler(ConfirmationCompletedHandler completedHandler) {
-        this.completedHandler = completedHandler;
-    }
+  @XmlTransient
+  public ConfirmationCompletedHandler getCompletedHandler() {
+    return completedHandler;
+  }
+
+  public void setCompletedHandler(ConfirmationCompletedHandler completedHandler) {
+    this.completedHandler = completedHandler;
+  }
 }
-

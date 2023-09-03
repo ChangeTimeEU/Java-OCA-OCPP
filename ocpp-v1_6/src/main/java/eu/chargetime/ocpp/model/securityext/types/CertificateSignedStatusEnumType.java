@@ -28,17 +28,11 @@ package eu.chargetime.ocpp.model.securityext.types;
 
 import eu.chargetime.ocpp.model.securityext.CertificateSignedConfirmation;
 
-/**
- * CertificateSignedStatusEnumType is used by {@link CertificateSignedConfirmation}
- */
+/** CertificateSignedStatusEnumType is used by {@link CertificateSignedConfirmation} */
 public enum CertificateSignedStatusEnumType {
-  /**
-   * Signed certificate is valid.
-   */
+  /** Signed certificate is valid. */
   Accepted,
 
-  /**
-   * Signed certificate is invalid.
-   */
+  /** Signed certificate is invalid. */
   Rejected
 }

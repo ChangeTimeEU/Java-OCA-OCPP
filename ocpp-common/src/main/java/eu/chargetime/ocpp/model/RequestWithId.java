@@ -11,6 +11,5 @@ public abstract class RequestWithId implements Request {
     this.ocppMessageId = requestId;
   }
 
-  @Exclude
-  private String ocppMessageId;
+  @Exclude private String ocppMessageId;
 }

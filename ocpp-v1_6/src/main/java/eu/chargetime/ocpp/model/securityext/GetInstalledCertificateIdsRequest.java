@@ -29,23 +29,20 @@ package eu.chargetime.ocpp.model.securityext;
 import eu.chargetime.ocpp.model.RequestWithId;
 import eu.chargetime.ocpp.model.securityext.types.CertificateUseEnumType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class GetInstalledCertificateIdsRequest extends RequestWithId {
 
   private CertificateUseEnumType certificateType;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private GetInstalledCertificateIdsRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private GetInstalledCertificateIdsRequest() {}
 
   /**
    * Handle required fields.
    *
-   * @param certificateType CertificateUseEnumType. See {@link #setCertificateType(CertificateUseEnumType)}
+   * @param certificateType CertificateUseEnumType. See {@link
+   *     #setCertificateType(CertificateUseEnumType)}
    */
   public GetInstalledCertificateIdsRequest(CertificateUseEnumType certificateType) {
     setCertificateType(certificateType);
@@ -95,7 +92,8 @@ public class GetInstalledCertificateIdsRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("certificateType", certificateType)
-      .add("isValid", validate()).toString();
+        .add("certificateType", certificateType)
+        .add("isValid", validate())
+        .toString();
   }
 }

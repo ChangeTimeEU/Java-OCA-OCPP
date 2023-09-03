@@ -26,17 +26,11 @@ package eu.chargetime.ocpp.model.securityext.types;
    SOFTWARE.
 */
 
-/**
- * Generic message response status.
- */
+/** Generic message response status. */
 public enum GenericStatusEnumType {
-  /**
-   * Request has been accepted and will be executed.
-   */
+  /** Request has been accepted and will be executed. */
   Accepted,
 
-  /**
-   * Request has not been accepted and will not be executed.
-   */
+  /** Request has not been accepted and will not be executed. */
   Rejected
 }

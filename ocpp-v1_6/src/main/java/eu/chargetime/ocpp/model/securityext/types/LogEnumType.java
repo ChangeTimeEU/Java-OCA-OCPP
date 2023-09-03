@@ -28,17 +28,14 @@ package eu.chargetime.ocpp.model.securityext.types;
 
 import eu.chargetime.ocpp.model.securityext.GetLogRequest;
 
-/**
- * LogEnumType is used by {@link GetLogRequest}
- */
+/** LogEnumType is used by {@link GetLogRequest} */
 public enum LogEnumType {
-  /**
-   * This contains the field definition of a diagnostics log file.
-   */
+  /** This contains the field definition of a diagnostics log file. */
   DiagnosticsLog,
 
   /**
-   * Sent by the Central System to the Charge Point to request that the Charge Point uploads the security log.
+   * Sent by the Central System to the Charge Point to request that the Charge Point uploads the
+   * security log.
    */
   SecurityLog
 }

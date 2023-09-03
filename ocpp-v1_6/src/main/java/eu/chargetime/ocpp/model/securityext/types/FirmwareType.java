@@ -33,32 +33,31 @@ import eu.chargetime.ocpp.model.validation.StringMaxLengthValidationRule;
 import eu.chargetime.ocpp.model.validation.Validator;
 import eu.chargetime.ocpp.model.validation.ValidatorBuilder;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
- * Represents a copy of the firmware that can be loaded/updated on the Charge Point.
- * FirmwareType is used by {@link SignedUpdateFirmwareRequest}
+ * Represents a copy of the firmware that can be loaded/updated on the Charge Point. FirmwareType is
+ * used by {@link SignedUpdateFirmwareRequest}
  */
 public class FirmwareType implements Validatable {
   private static final transient Validator locationValidator =
-    new ValidatorBuilder()
-      .addRule(OCPPSecurityExtDatatypes.string512())
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder()
+          .addRule(OCPPSecurityExtDatatypes.string512())
+          .setRequired(true)
+          .build();
 
   private static final transient Validator signingCertificateValidator =
-    new ValidatorBuilder()
-      .addRule(new StringMaxLengthValidationRule(5500))
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder()
+          .addRule(new StringMaxLengthValidationRule(5500))
+          .setRequired(true)
+          .build();
 
   private static final transient Validator signatureValidator =
-    new ValidatorBuilder()
-      .addRule(new StringMaxLengthValidationRule(800))
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder()
+          .addRule(new StringMaxLengthValidationRule(800))
+          .setRequired(true)
+          .build();
 
   private String location;
   private ZonedDateTime retrieveDateTime;
@@ -162,9 +161,9 @@ public class FirmwareType implements Validatable {
   @Override
   public boolean validate() {
     return locationValidator.safeValidate(location)
-      && retrieveDateTime != null
-      && signingCertificateValidator.safeValidate(signingCertificate)
-      && signatureValidator.safeValidate(signature);
+        && retrieveDateTime != null
+        && signingCertificateValidator.safeValidate(signingCertificate)
+        && signatureValidator.safeValidate(signature);
   }
 
   @Override
@@ -173,10 +172,10 @@ public class FirmwareType implements Validatable {
     if (o == null || getClass() != o.getClass()) return false;
     FirmwareType that = (FirmwareType) o;
     return Objects.equals(location, that.location)
-      && Objects.equals(retrieveDateTime, that.retrieveDateTime)
-      && Objects.equals(installDateTime, that.installDateTime)
-      && Objects.equals(signingCertificate, that.signingCertificate)
-      && Objects.equals(signature, that.signature);
+        && Objects.equals(retrieveDateTime, that.retrieveDateTime)
+        && Objects.equals(installDateTime, that.installDateTime)
+        && Objects.equals(signingCertificate, that.signingCertificate)
+        && Objects.equals(signature, that.signature);
   }
 
   @Override
@@ -187,11 +186,11 @@ public class FirmwareType implements Validatable {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("location", location)
-      .add("retrieveDateTime", retrieveDateTime)
-      .add("installDateTime", installDateTime)
-      .add("signingCertificate", signingCertificate)
-      .add("signature", signature)
-      .toString();
+        .add("location", location)
+        .add("retrieveDateTime", retrieveDateTime)
+        .add("installDateTime", installDateTime)
+        .add("signingCertificate", signingCertificate)
+        .add("signature", signature)
+        .toString();
   }
 }

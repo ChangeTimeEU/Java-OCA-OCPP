@@ -26,15 +26,15 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
-import eu.chargetime.ocpp.model.securityext.GetInstalledCertificateIdsConfirmation;
-import eu.chargetime.ocpp.model.securityext.types.CertificateHashDataType;
-import eu.chargetime.ocpp.model.securityext.types.GetInstalledCertificateStatusEnumType;
-import org.junit.Test;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import eu.chargetime.ocpp.model.securityext.GetInstalledCertificateIdsConfirmation;
+import eu.chargetime.ocpp.model.securityext.types.CertificateHashDataType;
+import eu.chargetime.ocpp.model.securityext.types.GetInstalledCertificateStatusEnumType;
+import org.junit.Test;
 
 public class GetInstalledCertificateIdsConfirmationTest {
 
@@ -42,7 +42,8 @@ public class GetInstalledCertificateIdsConfirmationTest {
   public void validate_constructor_returnsTrue() {
     // Given
     GetInstalledCertificateStatusEnumType status = GetInstalledCertificateStatusEnumType.Accepted;
-    GetInstalledCertificateIdsConfirmation confirmation = new GetInstalledCertificateIdsConfirmation(status);
+    GetInstalledCertificateIdsConfirmation confirmation =
+        new GetInstalledCertificateIdsConfirmation(status);
 
     // When
     boolean actual = confirmation.validate();
@@ -55,7 +56,8 @@ public class GetInstalledCertificateIdsConfirmationTest {
   public void validate_setRequired_returnsTrue() {
     // Given
     GetInstalledCertificateStatusEnumType status = GetInstalledCertificateStatusEnumType.Accepted;
-    GetInstalledCertificateIdsConfirmation confirmation = new GetInstalledCertificateIdsConfirmation(null);
+    GetInstalledCertificateIdsConfirmation confirmation =
+        new GetInstalledCertificateIdsConfirmation(null);
     confirmation.setStatus(status);
 
     // When
@@ -68,7 +70,8 @@ public class GetInstalledCertificateIdsConfirmationTest {
   @Test
   public void validate_returnFalse() {
     // Given
-    GetInstalledCertificateIdsConfirmation request = new GetInstalledCertificateIdsConfirmation(null);
+    GetInstalledCertificateIdsConfirmation request =
+        new GetInstalledCertificateIdsConfirmation(null);
 
     // When
     boolean actual = request.validate();
@@ -81,7 +84,8 @@ public class GetInstalledCertificateIdsConfirmationTest {
   public void validate_setRequiredAndOptional_returnsTrue() {
     // Given
     GetInstalledCertificateStatusEnumType status = GetInstalledCertificateStatusEnumType.Accepted;
-    GetInstalledCertificateIdsConfirmation confirmation = new GetInstalledCertificateIdsConfirmation(null);
+    GetInstalledCertificateIdsConfirmation confirmation =
+        new GetInstalledCertificateIdsConfirmation(null);
     confirmation.setStatus(status);
     confirmation.setCertificateHashData(givenCertificateHashData());
 
@@ -95,6 +99,6 @@ public class GetInstalledCertificateIdsConfirmationTest {
   private CertificateHashDataType[] givenCertificateHashData() {
     CertificateHashDataType certificateHashDataType = mock(CertificateHashDataType.class);
     when(certificateHashDataType.validate()).thenReturn(true);
-    return new CertificateHashDataType[]{certificateHashDataType};
+    return new CertificateHashDataType[] {certificateHashDataType};
   }
 }

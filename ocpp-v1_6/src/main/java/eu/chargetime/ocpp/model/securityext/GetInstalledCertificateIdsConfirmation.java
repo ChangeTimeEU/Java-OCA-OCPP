@@ -31,7 +31,6 @@ import eu.chargetime.ocpp.model.Confirmation;
 import eu.chargetime.ocpp.model.securityext.types.CertificateHashDataType;
 import eu.chargetime.ocpp.model.securityext.types.GetInstalledCertificateStatusEnumType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -40,16 +39,14 @@ public class GetInstalledCertificateIdsConfirmation extends Confirmation {
   private GetInstalledCertificateStatusEnumType status;
   private CertificateHashDataType[] certificateHashData;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private GetInstalledCertificateIdsConfirmation() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private GetInstalledCertificateIdsConfirmation() {}
 
   /**
    * Handle required fields.
    *
-   * @param status GetInstalledCertificateStatusEnumType. See {@link #setStatus(GetInstalledCertificateStatusEnumType)}
+   * @param status GetInstalledCertificateStatusEnumType. See {@link
+   *     #setStatus(GetInstalledCertificateStatusEnumType)}
    */
   public GetInstalledCertificateIdsConfirmation(GetInstalledCertificateStatusEnumType status) {
     setStatus(status);
@@ -114,7 +111,7 @@ public class GetInstalledCertificateIdsConfirmation extends Confirmation {
     if (o == null || getClass() != o.getClass()) return false;
     GetInstalledCertificateIdsConfirmation that = (GetInstalledCertificateIdsConfirmation) o;
     return Objects.equals(status, that.status)
-      && Arrays.equals(certificateHashData, that.certificateHashData);
+        && Arrays.equals(certificateHashData, that.certificateHashData);
   }
 
   @Override
@@ -125,8 +122,9 @@ public class GetInstalledCertificateIdsConfirmation extends Confirmation {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("status", status)
-      .add("certificateHashData", certificateHashData)
-      .add("isValid", validate()).toString();
+        .add("status", status)
+        .add("certificateHashData", certificateHashData)
+        .add("isValid", validate())
+        .toString();
   }
 }

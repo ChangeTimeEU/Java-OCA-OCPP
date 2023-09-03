@@ -31,24 +31,20 @@ import eu.chargetime.ocpp.model.validation.StringMaxLengthValidationRule;
 import eu.chargetime.ocpp.model.validation.Validator;
 import eu.chargetime.ocpp.model.validation.ValidatorBuilder;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class CertificateSignedRequest extends RequestWithId {
 
   private static final transient Validator certificateChainValidator =
-    new ValidatorBuilder()
-      .addRule(new StringMaxLengthValidationRule(10000))
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder()
+          .addRule(new StringMaxLengthValidationRule(10000))
+          .setRequired(true)
+          .build();
 
   private String certificateChain;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private CertificateSignedRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private CertificateSignedRequest() {}
 
   /**
    * Handle required fields.
@@ -60,9 +56,9 @@ public class CertificateSignedRequest extends RequestWithId {
   }
 
   /**
-   * The signed PEM encoded X.509 certificates. This can also contain the
-   * necessary sub CA certificates. The maximum size of this field is limited by the
-   * configuration key: CertificateSignedMaxSize.
+   * The signed PEM encoded X.509 certificates. This can also contain the necessary sub CA
+   * certificates. The maximum size of this field is limited by the configuration key:
+   * CertificateSignedMaxSize.
    *
    * @return string[0..10000]
    */
@@ -71,9 +67,9 @@ public class CertificateSignedRequest extends RequestWithId {
   }
 
   /**
-   * Required. The signed PEM encoded X.509 certificates. This can also contain the
-   * necessary sub CA certificates. The maximum size of this field is limited by the
-   * configuration key: CertificateSignedMaxSize.
+   * Required. The signed PEM encoded X.509 certificates. This can also contain the necessary sub CA
+   * certificates. The maximum size of this field is limited by the configuration key:
+   * CertificateSignedMaxSize.
    *
    * @param certificateChain string[0..10000]
    */
@@ -108,7 +104,8 @@ public class CertificateSignedRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("certificateChain", certificateChain)
-      .add("isValid", validate()).toString();
+        .add("certificateChain", certificateChain)
+        .add("isValid", validate())
+        .toString();
   }
 }

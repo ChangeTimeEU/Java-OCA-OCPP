@@ -31,84 +31,66 @@ import eu.chargetime.ocpp.model.securityext.SignedFirmwareStatusNotificationRequ
 import eu.chargetime.ocpp.model.securityext.SignedUpdateFirmwareRequest;
 
 /**
- * Status of a firmware download.
- * A value with "Intermediate state" in the description, is an intermediate state, update process is not finished.
- * A value with "Failure end state" in the description, is an end state, update process has stopped, update failed.
- * A value with "Successful end state" in the description, is an end state, update process has stopped, update successful.
+ * Status of a firmware download. A value with "Intermediate state" in the description, is an
+ * intermediate state, update process is not finished. A value with "Failure end state" in the
+ * description, is an end state, update process has stopped, update failed. A value with "Successful
+ * end state" in the description, is an end state, update process has stopped, update successful.
  * FirmwareStatusEnumType is used by {@link SignedFirmwareStatusNotificationRequest}
  */
 public enum FirmwareStatusEnumType {
-  /**
-   * Intermediate state. New firmware has been downloaded by Charge Point.
-   */
+  /** Intermediate state. New firmware has been downloaded by Charge Point. */
   Downloaded,
 
-  /**
-   * Failure end state. Charge Point failed to download firmware.
-   */
+  /** Failure end state. Charge Point failed to download firmware. */
   DownloadFailed,
 
-  /**
-   * Intermediate state. Firmware is being downloaded.
-   */
+  /** Intermediate state. Firmware is being downloaded. */
   Downloading,
 
-  /**
-   * Intermediate state. Downloading of new firmware has been scheduled.
-   */
+  /** Intermediate state. Downloading of new firmware has been scheduled. */
   DownloadScheduled,
 
-  /**
-   * Intermediate state. Downloading has been paused.
-   */
+  /** Intermediate state. Downloading has been paused. */
   DownloadPaused,
 
   /**
-   * Charge Point is not performing firmware update related tasks. Status Idle SHALL only be used as in a
-   * {@link SignedFirmwareStatusNotificationRequest} that was triggered by {@link ExtendedTriggerMessageRequest}.
+   * Charge Point is not performing firmware update related tasks. Status Idle SHALL only be used as
+   * in a {@link SignedFirmwareStatusNotificationRequest} that was triggered by {@link
+   * ExtendedTriggerMessageRequest}.
    */
   Idle,
 
-  /**
-   * Failure end state. Installation of new firmware has failed.
-   */
+  /** Failure end state. Installation of new firmware has failed. */
   InstallationFailed,
 
-  /**
-   * Intermediate state. Firmware is being installed.
-   */
+  /** Intermediate state. Firmware is being installed. */
   Installing,
 
-  /**
-   * Successful end state. New firmware has successfully been installed in Charge Point.
-   */
+  /** Successful end state. New firmware has successfully been installed in Charge Point. */
   Installed,
 
   /**
-   * Intermediate state. Charge Point is about to reboot to activate new firmware. This status MAY be omitted if a
-   * reboot is an integral part of the installation and cannot be reported separately
+   * Intermediate state. Charge Point is about to reboot to activate new firmware. This status MAY
+   * be omitted if a reboot is an integral part of the installation and cannot be reported
+   * separately
    */
   InstallRebooting,
 
   /**
-   * Intermediate state. Installation of the downloaded firmware is scheduled to take place on installDateTime given
-   * in {@link SignedUpdateFirmwareRequest}.
+   * Intermediate state. Installation of the downloaded firmware is scheduled to take place on
+   * installDateTime given in {@link SignedUpdateFirmwareRequest}.
    */
   InstallScheduled,
 
   /**
-   * Failure end state. Verification of the new firmware (e.g. using a checksum or some other means) has failed and
-   * installation will not proceed. (Final failure state)
+   * Failure end state. Verification of the new firmware (e.g. using a checksum or some other means)
+   * has failed and installation will not proceed. (Final failure state)
    */
   InstallVerificationFailed,
 
-  /**
-   * Failure end state. The firmware signature is not valid.
-   */
+  /** Failure end state. The firmware signature is not valid. */
   InvalidSignature,
 
-  /**
-   * Intermediate state. Provide signature successfully verified.
-   */
+  /** Intermediate state. Provide signature successfully verified. */
   SignatureVerified
 }

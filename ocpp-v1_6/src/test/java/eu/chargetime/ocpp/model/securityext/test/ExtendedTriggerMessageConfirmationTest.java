@@ -26,12 +26,12 @@ package eu.chargetime.ocpp.model.securityext.test;
    SOFTWARE.
 */
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import eu.chargetime.ocpp.model.securityext.ExtendedTriggerMessageConfirmation;
 import eu.chargetime.ocpp.model.securityext.types.TriggerMessageStatusEnumType;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class ExtendedTriggerMessageConfirmationTest {
 
@@ -39,7 +39,8 @@ public class ExtendedTriggerMessageConfirmationTest {
   public void validate_constructor_returnsTrue() {
     // Given
     TriggerMessageStatusEnumType status = TriggerMessageStatusEnumType.Accepted;
-    ExtendedTriggerMessageConfirmation confirmation = new ExtendedTriggerMessageConfirmation(status);
+    ExtendedTriggerMessageConfirmation confirmation =
+        new ExtendedTriggerMessageConfirmation(status);
 
     // When
     boolean actual = confirmation.validate();

@@ -30,18 +30,14 @@ package eu.chargetime.ocpp.model.securityext;
 import eu.chargetime.ocpp.model.Confirmation;
 import eu.chargetime.ocpp.model.securityext.types.UpdateFirmwareStatusEnumType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class SignedUpdateFirmwareConfirmation extends Confirmation {
 
   private UpdateFirmwareStatusEnumType status;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private SignedUpdateFirmwareConfirmation() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private SignedUpdateFirmwareConfirmation() {}
 
   /**
    * Handle required fields.
@@ -91,7 +87,8 @@ public class SignedUpdateFirmwareConfirmation extends Confirmation {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("retries", status)
-      .add("isValid", validate()).toString();
+        .add("retries", status)
+        .add("isValid", validate())
+        .toString();
   }
 }

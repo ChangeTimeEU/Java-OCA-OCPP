@@ -29,18 +29,14 @@ package eu.chargetime.ocpp.model.securityext;
 import eu.chargetime.ocpp.model.RequestWithId;
 import eu.chargetime.ocpp.model.securityext.types.CertificateHashDataType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class DeleteCertificateRequest extends RequestWithId {
 
   private CertificateHashDataType certificateHashData;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private DeleteCertificateRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private DeleteCertificateRequest() {}
 
   /**
    * Handle required fields.
@@ -95,7 +91,8 @@ public class DeleteCertificateRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("certificateHashData", certificateHashData)
-      .add("isValid", validate()).toString();
+        .add("certificateHashData", certificateHashData)
+        .add("isValid", validate())
+        .toString();
   }
 }

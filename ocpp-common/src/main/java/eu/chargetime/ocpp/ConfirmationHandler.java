@@ -49,7 +49,8 @@ class ConfirmationHandler implements BiConsumer<Confirmation, Throwable> {
           id,
           action,
           "InternalError",
-          "An internal error occurred and the receiver was not able to process the requested Action successfully");
+          "An internal error occurred and the receiver was not able to process the requested Action"
+              + " successfully");
     } else if (confirmation == null) {
       communicator.sendCallError(
           id,

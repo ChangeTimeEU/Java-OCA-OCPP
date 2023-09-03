@@ -29,43 +29,29 @@ package eu.chargetime.ocpp.model.securityext.types;
 import eu.chargetime.ocpp.model.securityext.ExtendedTriggerMessageRequest;
 import eu.chargetime.ocpp.model.securityext.LogStatusNotificationRequest;
 
-/**
- * UploadLogStatusEnumType is used by {@link LogStatusNotificationRequest}
- */
+/** UploadLogStatusEnumType is used by {@link LogStatusNotificationRequest} */
 public enum UploadLogStatusEnumType {
-  /**
-   * A badly formatted packet or other protocol incompatibility was detected.
-   */
+  /** A badly formatted packet or other protocol incompatibility was detected. */
   BadMessage,
 
   /**
-   * The Charge Point is not uploading a log file.
-   * Idle SHALL only be used when the message was triggered by a {@link ExtendedTriggerMessageRequest}.
+   * The Charge Point is not uploading a log file. Idle SHALL only be used when the message was
+   * triggered by a {@link ExtendedTriggerMessageRequest}.
    */
   Idle,
 
-  /**
-   * The server does not support the operation.
-   */
+  /** The server does not support the operation. */
   NotSupportedOperation,
 
-  /**
-   * Insufficient permissions to perform the operation.
-   */
+  /** Insufficient permissions to perform the operation. */
   PermissionDenied,
 
-  /**
-   * File has been uploaded successfully.
-   */
+  /** File has been uploaded successfully. */
   Uploaded,
 
-  /**
-   * Failed to upload the requested file.
-   */
+  /** Failed to upload the requested file. */
   UploadFailure,
 
-  /**
-   * File is being uploaded.
-   */
+  /** File is being uploaded. */
   Uploading
 }

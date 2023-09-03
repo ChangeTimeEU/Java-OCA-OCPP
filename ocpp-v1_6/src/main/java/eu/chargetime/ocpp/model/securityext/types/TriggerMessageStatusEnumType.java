@@ -28,22 +28,14 @@ package eu.chargetime.ocpp.model.securityext.types;
 
 import eu.chargetime.ocpp.model.securityext.ExtendedTriggerMessageConfirmation;
 
-/**
- * TriggerMessageStatusEnumType is used by {@link ExtendedTriggerMessageConfirmation}
- */
+/** TriggerMessageStatusEnumType is used by {@link ExtendedTriggerMessageConfirmation} */
 public enum TriggerMessageStatusEnumType {
-  /**
-   * Requested message will be sent.
-   */
+  /** Requested message will be sent. */
   Accepted,
 
-  /**
-   * Requested message will not be sent.
-   */
+  /** Requested message will not be sent. */
   Rejected,
 
-  /**
-   * Requested message cannot be sent because it is either not implemented or unknown.
-   */
+  /** Requested message cannot be sent because it is either not implemented or unknown. */
   NotImplemented
 }

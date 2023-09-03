@@ -32,31 +32,28 @@ import eu.chargetime.ocpp.model.validation.StringMaxLengthValidationRule;
 import eu.chargetime.ocpp.model.validation.Validator;
 import eu.chargetime.ocpp.model.validation.ValidatorBuilder;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class InstallCertificateRequest extends RequestWithId {
 
   private static final transient Validator certificateValidator =
-    new ValidatorBuilder()
-      .addRule(new StringMaxLengthValidationRule(5500))
-      .setRequired(true)
-      .build();
+      new ValidatorBuilder()
+          .addRule(new StringMaxLengthValidationRule(5500))
+          .setRequired(true)
+          .build();
 
   private CertificateUseEnumType certificateType;
   private String certificate;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private InstallCertificateRequest() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private InstallCertificateRequest() {}
 
   /**
    * Handle required fields.
    *
-   * @param certificateType CertificateUseEnumType. See {@link #setCertificateType(CertificateUseEnumType)}
-   * @param certificate     String. See {@link #setCertificate(String)}
+   * @param certificateType CertificateUseEnumType. See {@link
+   *     #setCertificateType(CertificateUseEnumType)}
+   * @param certificate String. See {@link #setCertificate(String)}
    */
   public InstallCertificateRequest(CertificateUseEnumType certificateType, String certificate) {
     setCertificateType(certificateType);
@@ -116,7 +113,7 @@ public class InstallCertificateRequest extends RequestWithId {
     if (o == null || getClass() != o.getClass()) return false;
     InstallCertificateRequest that = (InstallCertificateRequest) o;
     return Objects.equals(certificateType, that.certificateType)
-      && Objects.equals(certificate, that.certificate);
+        && Objects.equals(certificate, that.certificate);
   }
 
   @Override
@@ -127,8 +124,9 @@ public class InstallCertificateRequest extends RequestWithId {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("certificateType", certificateType)
-      .add("certificate", certificate)
-      .add("isValid", validate()).toString();
+        .add("certificateType", certificateType)
+        .add("certificate", certificate)
+        .add("isValid", validate())
+        .toString();
   }
 }

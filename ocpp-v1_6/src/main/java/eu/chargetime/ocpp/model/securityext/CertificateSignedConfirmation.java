@@ -30,23 +30,20 @@ package eu.chargetime.ocpp.model.securityext;
 import eu.chargetime.ocpp.model.Confirmation;
 import eu.chargetime.ocpp.model.securityext.types.CertificateSignedStatusEnumType;
 import eu.chargetime.ocpp.utilities.MoreObjects;
-
 import java.util.Objects;
 
 public class CertificateSignedConfirmation extends Confirmation {
 
   private CertificateSignedStatusEnumType status;
 
-  /**
-   * Private default constructor for serialization purposes.
-   */
-  private CertificateSignedConfirmation() {
-  }
+  /** Private default constructor for serialization purposes. */
+  private CertificateSignedConfirmation() {}
 
   /**
    * Handle required fields.
    *
-   * @param status CertificateSignedStatusEnumType. See {@link #setStatus(CertificateSignedStatusEnumType)}
+   * @param status CertificateSignedStatusEnumType. See {@link
+   *     #setStatus(CertificateSignedStatusEnumType)}
    */
   public CertificateSignedConfirmation(CertificateSignedStatusEnumType status) {
     setStatus(status);
@@ -91,7 +88,8 @@ public class CertificateSignedConfirmation extends Confirmation {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-      .add("status", status)
-      .add("isValid", validate()).toString();
+        .add("status", status)
+        .add("isValid", validate())
+        .toString();
   }
 }

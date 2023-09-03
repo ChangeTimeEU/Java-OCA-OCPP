@@ -87,7 +87,7 @@ public class WebSocketListener implements Listener {
             drafts) {
           @Override
           public void onOpen(WebSocket webSocket, ClientHandshake clientHandshake) {
-            if(Draft_HttpHealthCheck.isHttp(clientHandshake)){
+            if (Draft_HttpHealthCheck.isHttp(clientHandshake)) {
               logger.debug("On HTTP Request, for heathcheck");
               webSocket.close(Draft_HttpHealthCheck.HTTP_HEALTH_CHECK_CLOSE_CODE);
               return;
@@ -190,8 +190,7 @@ public class WebSocketListener implements Listener {
                 reason,
                 remote);
 
-            if(code == Draft_HttpHealthCheck.HTTP_HEALTH_CHECK_CLOSE_CODE)
-              return;
+            if (code == Draft_HttpHealthCheck.HTTP_HEALTH_CHECK_CLOSE_CODE) return;
 
             WebSocketReceiver receiver = sockets.get(webSocket);
             if (receiver != null) {
