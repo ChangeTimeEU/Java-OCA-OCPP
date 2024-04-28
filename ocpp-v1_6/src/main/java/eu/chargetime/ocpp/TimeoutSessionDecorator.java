@@ -93,6 +93,11 @@ public class TimeoutSessionDecorator implements ISession {
   }
 
   @Override
+  public void removeRequest(String ticket) {
+    this.session.removeRequest(ticket);
+  }
+
+  @Override
   public boolean completePendingPromise(String id, Confirmation confirmation) throws UnsupportedFeatureException, OccurenceConstraintException {
     return this.session.completePendingPromise(id, confirmation);
   }

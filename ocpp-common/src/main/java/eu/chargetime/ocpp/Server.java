@@ -97,7 +97,6 @@ public class Server {
                         promiseRepository.getPromise(uniqueId);
                     if (promiseOptional.isPresent()) {
                       promiseOptional.get().complete(confirmation);
-                      promiseRepository.removePromise(uniqueId);
                     } else {
                       logger.debug("Promise not found for confirmation {}", confirmation);
                     }
@@ -135,11 +134,9 @@ public class Server {
                     Optional<CompletableFuture<Confirmation>> promiseOptional =
                         promiseRepository.getPromise(uniqueId);
                     if (promiseOptional.isPresent()) {
-                      promiseOptional
-                          .get()
+                      promiseOptional.get()
                           .completeExceptionally(
                               new CallErrorException(errorCode, errorDescription, payload));
-                      promiseRepository.removePromise(uniqueId);
                     } else {
                       logger.debug("Promise not found for error {}", errorDescription);
                     }
@@ -216,9 +213,16 @@ public class Server {
       throw new OccurenceConstraintException();
     }
 
-    String id = session.storeRequest(request);
-    CompletableFuture<Confirmation> promise = promiseRepository.createPromise(id);
-    session.sendRequest(featureOptional.get().getAction(), request, id);
+    String requestUuid = session.storeRequest(request);
+    CompletableFuture<Confirmation> promise = promiseRepository.createPromise(requestUuid);
+
+    // Clean up after the promise has completed, no matter if it was successful or had an error or a timeout.
+    promise.whenComplete((confirmation, throwable) -> {
+      session.removeRequest(requestUuid);
+      promiseRepository.removePromise(requestUuid);
+    });
+
+    session.sendRequest(featureOptional.get().getAction(), request, requestUuid);
     return promise;
   }
 

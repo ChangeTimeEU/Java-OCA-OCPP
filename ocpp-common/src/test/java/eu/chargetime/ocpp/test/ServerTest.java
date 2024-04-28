@@ -1,18 +1,28 @@
 package eu.chargetime.ocpp.test;
 
-import static org.mockito.Mockito.*;
-
 import eu.chargetime.ocpp.*;
 import eu.chargetime.ocpp.feature.Feature;
+import eu.chargetime.ocpp.model.Confirmation;
 import eu.chargetime.ocpp.model.Request;
 import eu.chargetime.ocpp.model.SessionInformation;
-import java.util.Optional;
-import java.util.UUID;
+import eu.chargetime.ocpp.model.TestConfirmation;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.Optional;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThrows;
+import static org.mockito.Mockito.*;
 
 /*
    ChargeTime.eu - Java-OCA-OCPP
@@ -58,7 +68,7 @@ public class ServerTest {
   @Mock private Request request;
   @Mock private SessionInformation information;
   @Mock private IFeatureRepository featureRepository;
-  @Mock private IPromiseRepository promiseRepository;
+  @Mock IPromiseRepository promiseRepository;
 
   @Before
   public void setup() {
@@ -75,8 +85,10 @@ public class ServerTest {
         .when(serverEvents)
         .newSession(any(), any());
 
+    when(promiseRepository.createPromise(any())).then(invocation -> new CompletableFuture<Confirmation>());
     when(featureRepository.findFeature(any())).thenReturn(Optional.of(feature));
     when(session.getFeatureRepository()).thenReturn(featureRepository);
+    when(session.storeRequest(any())).thenAnswer(invocation -> UUID.randomUUID().toString());
     server = new Server(listener, promiseRepository);
   }
 
@@ -142,5 +154,75 @@ public class ServerTest {
 
     // Then
     verify(request, times(1)).validate();
+  }
+
+  @Test
+  public void send_aMessage_promiseCompletes() throws Exception {
+    // Given
+    server.open(LOCALHOST, PORT, serverEvents);
+    listenerEvents.newSession(session, information);
+    CompletableFuture<Confirmation> internalFuture = new CompletableFuture<>();
+    when(promiseRepository.createPromise(any())).thenReturn(internalFuture);
+
+    // When
+    CompletableFuture<Confirmation> returnedFuture = server.send(sessionIndex, request);
+    TestConfirmation confirmation = new TestConfirmation();
+    internalFuture.complete(confirmation);
+
+    // Then
+    assertThat(returnedFuture, is(internalFuture));
+    assertThat(returnedFuture.isDone(), is(true));
+    assertThat(returnedFuture.get(), is(confirmation));
+    verify(session, times(1)).removeRequest(any());
+    verify(promiseRepository, times(1)).removePromise(any());
+  }
+
+  @Test
+  public void send_aMessage_promiseCompletesExceptionally() throws Exception {
+    // Given
+    server.open(LOCALHOST, PORT, serverEvents);
+    listenerEvents.newSession(session, information);
+    CompletableFuture<Confirmation> internalFuture = new CompletableFuture<>();
+    when(promiseRepository.createPromise(any())).thenReturn(internalFuture);
+
+    // When
+    CompletableFuture<Confirmation> returnedFuture = server.send(sessionIndex, request);
+    internalFuture.completeExceptionally(new IllegalStateException());
+
+    // Then
+    assertThat(returnedFuture, is(internalFuture));
+    assertThat(returnedFuture.isDone(), is(true));
+    assertThat(returnedFuture.isCompletedExceptionally(), is(true));
+    ExecutionException executionException = assertThrows(ExecutionException.class, returnedFuture::get);
+    assertThat(executionException.getCause().getClass(), is(equalTo(IllegalStateException.class)));
+    verify(session, times(1)).removeRequest(any());
+    verify(promiseRepository, times(1)).removePromise(any());
+  }
+
+  @Test
+  public void send_aMessage_promiseCompletesWithTimeout() throws Exception {
+    // Given
+    server.open(LOCALHOST, PORT, serverEvents);
+    listenerEvents.newSession(session, information);
+    CompletableFuture<Confirmation> internalFuture = new CompletableFuture<>();
+    when(promiseRepository.createPromise(any())).thenReturn(internalFuture);
+
+    // When
+    CompletableFuture<Confirmation> returnedFuture = server.send(sessionIndex, request);
+    // If the client uses at least Java 9, it could use CompletableFuture::orTimeout(..).
+//    returnedFuture.orTimeout(50, TimeUnit.MILLISECONDS);
+    assertThat(returnedFuture.isDone(), is(false));
+    Thread.sleep(100);
+    // .. alternatively, it can be implemented manually
+    returnedFuture.completeExceptionally(new TimeoutException());
+
+    // Then
+    assertThat(returnedFuture, is(internalFuture));
+    assertThat(returnedFuture.isDone(), is(true));
+    assertThat(returnedFuture.isCompletedExceptionally(), is(true));
+    ExecutionException executionException = assertThrows(ExecutionException.class, returnedFuture::get);
+    assertThat(executionException.getCause().getClass(), is(equalTo(TimeoutException.class)));
+    verify(session, times(1)).removeRequest(any());
+    verify(promiseRepository, times(1)).removePromise(any());
   }
 }

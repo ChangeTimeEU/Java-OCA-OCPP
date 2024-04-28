@@ -89,6 +89,16 @@ public class Queue {
     return Optional.empty();
   }
 
+  /**
+   * Remove a stored {@link Request} using a unique identifier.
+   * If no request is found for the identifier this method has no effect.
+   *
+   * @param ticket unique identifier returned when {@link Request} was initially stored.
+   */
+  public void removeRequest(String ticket) {
+    requestQueue.remove(ticket);
+  }
+
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this).add("requestQueue", requestQueue).toString();

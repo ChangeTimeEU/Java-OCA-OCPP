@@ -40,6 +40,8 @@ public interface ISession {
 
   String storeRequest(Request payload);
 
+  void removeRequest(String ticket);
+
   void sendRequest(String action, Request payload, String uuid);
 
   boolean completePendingPromise(String id, Confirmation confirmation) throws UnsupportedFeatureException, OccurenceConstraintException;
