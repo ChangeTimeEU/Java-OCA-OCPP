@@ -9,6 +9,7 @@ MIT License
 Copyright (C) 2016-2018 Thomas Volden
 Copyright (C) 2019 Kevin Raddatz <kevin.raddatz@valtech-mobility.com>
 Copyright (C) 2022 Mathias Oben <mathias.oben@enervalis.com>
+Copyright (C) 2022 Emil Melar <emil@iconsultable.no>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -307,7 +308,7 @@ public class FakeChargePoint {
             public void connectionOpened() {}
 
             @Override
-            public void connectionClosed() {}
+            public void connectionClosed(int code, String reason) {}
           });
     } catch (Exception ex) {
       ex.printStackTrace();

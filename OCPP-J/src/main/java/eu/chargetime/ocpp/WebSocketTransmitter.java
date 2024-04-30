@@ -6,6 +6,7 @@ package eu.chargetime.ocpp;
  MIT License
 
  Copyright (C) 2016-2018 Thomas Volden
+ Copyright (C) 2022 Emil Melar <emil@iconsultable.no>
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -105,7 +106,7 @@ public class WebSocketTransmitter implements Transmitter {
             logger.debug(
                 "On connection close (code: {}, reason: {}, remote: {})", code, reason, remote);
 
-            events.disconnected();
+            events.disconnected(code, reason);
           }
 
           @Override

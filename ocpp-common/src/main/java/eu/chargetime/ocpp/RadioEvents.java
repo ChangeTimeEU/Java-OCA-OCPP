@@ -7,6 +7,7 @@ Copyright (C) 2015-2016 Thomas Volden <tv@chargetime.eu>
 MIT License
 
 Copyright (C) 2016-2018 Thomas Volden
+Copyright (C) 2022 Emil Melar <emil@iconsultable.no>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -39,6 +40,8 @@ public interface RadioEvents {
    */
   void receivedMessage(Object message);
 
-  /** Disconnected from node. */
-  void disconnected();
+  /** Disconnected from node.
+   * @param code
+   * @param reason*/
+  void disconnected(int code, String reason);
 }

@@ -6,6 +6,7 @@ Copyright (C) 2015-2016 Thomas Volden <tv@chargetime.eu>
 MIT License
 
 Copyright (C) 2016-2018 Thomas Volden
+Copyright (C) 2022 Emil Melar <emil@iconsultable.no>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -90,7 +91,7 @@ public class ClientTest {
 
     // Then
     verify(events, times(1)).connectionOpened();
-    verify(events, never()).connectionClosed();
+    verify(events, never()).connectionClosed(0, null);
   }
 
   @Test
@@ -99,10 +100,10 @@ public class ClientTest {
     client.connect(null, events);
 
     // When
-    this.eventHandler.handleConnectionClosed();
+    this.eventHandler.handleConnectionClosed(0, null);
 
     // Then
-    verify(events, times(1)).connectionClosed();
+    verify(events, times(1)).connectionClosed(0, null);
     verify(events, never()).connectionOpened();
   }
 

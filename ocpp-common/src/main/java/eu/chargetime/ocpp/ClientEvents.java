@@ -6,7 +6,7 @@ Copyright (C) 2017 Emil Christopher Solli Melar <emil@iconsultable.no>
 
 MIT License
 
-Copyright (C) 2017 Emil Christopher Solli Melar
+Copyright (C) 2022 Emil Melar <emil@iconsultable.no>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,5 +30,5 @@ SOFTWARE.
 public interface ClientEvents {
   void connectionOpened();
 
-  void connectionClosed();
+  void connectionClosed(int code, String reason);
 }

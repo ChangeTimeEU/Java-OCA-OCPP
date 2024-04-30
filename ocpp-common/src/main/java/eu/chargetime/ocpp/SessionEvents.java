@@ -10,6 +10,7 @@ Copyright (C) 2015-2016 Thomas Volden <tv@chargetime.eu>
 MIT License
 
 Copyright (C) 2016-2018 Thomas Volden
+Copyright (C) 2022 Emil Melar <emil@iconsultable.no>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -68,8 +69,10 @@ public interface SessionEvents {
    */
   void handleError(String uniqueId, String errorCode, String errorDescription, Object payload);
 
-  /** Handle a closed connection. */
-  void handleConnectionClosed();
+  /** Handle a closed connection.
+   * @param code
+   * @param reason*/
+  void handleConnectionClosed(int code, String reason);
 
   /** Handle a opened connection. */
   void handleConnectionOpened();

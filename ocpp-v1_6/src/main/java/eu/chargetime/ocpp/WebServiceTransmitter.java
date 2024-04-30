@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
    MIT License
 
    Copyright (C) 2016-2018 Thomas Volden <tv@chargetime.eu>
+   Copyright (C) 2022 Emil Melar <emil@iconsultable.no>
 
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +56,7 @@ public class WebServiceTransmitter extends SOAPSyncHelper implements Transmitter
         logger.info("disconnect() failed", e);
       }
     }
-    events.disconnected();
+    events.disconnected(0, "disconnect() method called");
   }
 
   @Override

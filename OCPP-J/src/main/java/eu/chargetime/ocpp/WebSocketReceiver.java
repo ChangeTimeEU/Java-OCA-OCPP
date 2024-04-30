@@ -5,7 +5,7 @@ package eu.chargetime.ocpp;
    MIT License
 
    Copyright (C) 2016-2018 Thomas Volden <tv@chargetime.eu>
-
+   Copyright (C) 2022 Emil Melar <emil@iconsultable.no>
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
    in the Software without restriction, including without limitation the rights
@@ -37,7 +37,7 @@ public class WebSocketReceiver implements Receiver {
   @Override
   public void disconnect() {
     receiverEvents.close();
-    handler.disconnected();
+    handler.disconnected(0, "disconnect() method called");
   }
 
   void relay(String message) {
