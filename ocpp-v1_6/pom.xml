@@ -97,7 +97,7 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
             </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
