@@ -27,8 +27,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+import java.io.Serializable;
+
 /** Interface used to add a validation option on a model. */
-public interface Validatable {
+public interface Validatable extends Serializable {
   /**
    * Validate if the model lives up to the specification. Must check if required fields are
    * correctly set and underlying models are valid.
