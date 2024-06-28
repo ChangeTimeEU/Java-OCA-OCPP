@@ -51,7 +51,7 @@ public class WebSocketListener implements Listener {
   private static final int TIMEOUT_IN_MILLIS = 10000;
 
   private static final int OCPPJ_CP_MIN_PASSWORD_LENGTH = 16;
-  private static final int OCPPJ_CP_MAX_PASSWORD_LENGTH = 40;
+  private static final int OCPPJ_CP_MAX_PASSWORD_LENGTH = 20;
 
   private static final String HTTP_HEADER_PROXIED_ADDRESS = "X-Forwarded-For";
 
@@ -146,7 +146,7 @@ public class WebSocketListener implements Listener {
                     .build();
 
             String username = null;
-            String password = null;
+            byte[] password = null;
             if (clientHandshake.hasFieldValue("Authorization")) {
               String authorization = clientHandshake.getFieldValue("Authorization");
               if (authorization != null && authorization.toLowerCase().startsWith("basic")) {
@@ -159,15 +159,15 @@ public class WebSocketListener implements Listener {
                     username =
                         new String(Arrays.copyOfRange(credDecoded, 0, i), StandardCharsets.UTF_8);
                     if (i + 1 < credDecoded.length) {
-                      password = new String(Arrays.copyOfRange(credDecoded, i + 1, credDecoded.length));
+                      password = Arrays.copyOfRange(credDecoded, i + 1, credDecoded.length);
                     }
                     break;
                   }
                 }
               }
               if (password == null
-                  || password.length() < configuration.getParameter(JSONConfiguration.OCPPJ_CP_MIN_PASSWORD_LENGTH, OCPPJ_CP_MIN_PASSWORD_LENGTH)
-                  || password.length() > configuration.getParameter(JSONConfiguration.OCPPJ_CP_MAX_PASSWORD_LENGTH, OCPPJ_CP_MAX_PASSWORD_LENGTH))
+                  || password.length < configuration.getParameter(JSONConfiguration.OCPPJ_CP_MIN_PASSWORD_LENGTH, OCPPJ_CP_MIN_PASSWORD_LENGTH)
+                  || password.length > configuration.getParameter(JSONConfiguration.OCPPJ_CP_MAX_PASSWORD_LENGTH, OCPPJ_CP_MAX_PASSWORD_LENGTH))
                 throw new InvalidDataException(401, "Invalid password length");
             }
 

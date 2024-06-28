@@ -54,6 +54,7 @@ public class MultiProtocolWebSocketTransmitter implements Transmitter {
   private final JSONConfiguration configuration;
   private final Draft draft;
 
+  private volatile Exception lastError = null;
   private volatile boolean closed = true;
   private volatile WebSocketClient client;
   private WssSocketBuilder wssSocketBuilder;
@@ -71,6 +72,7 @@ public class MultiProtocolWebSocketTransmitter implements Transmitter {
   public void connect(String uri, RadioEvents events) {
     final URI resource = URI.create(uri);
 
+    lastError = null;
     Map<String, String> httpHeaders = new HashMap<>();
     String username = configuration.getParameter(JSONConfiguration.USERNAME_PARAMETER);
     Object password = configuration.getParameter(JSONConfiguration.PASSWORD_PARAMETER);
@@ -120,6 +122,7 @@ public class MultiProtocolWebSocketTransmitter implements Transmitter {
 
           @Override
           public void onError(Exception ex) {
+            lastError = ex;
             if (ex instanceof ConnectException) {
               logger.error("On error triggered caused by:", ex);
             } else {
@@ -259,6 +262,10 @@ public class MultiProtocolWebSocketTransmitter implements Transmitter {
     } catch (WebsocketNotConnectedException ex) {
       throw new NotConnectedException();
     }
+  }
+
+  public Exception getLastError() {
+    return lastError;
   }
 
   public boolean isClosed() {

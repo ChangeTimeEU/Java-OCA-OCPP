@@ -206,6 +206,10 @@ public class MultiProtocolJSONClient implements IMultiProtocolClientAPI {
     client.disconnect();
   }
 
+  public Exception getLastError() {
+    return transmitter.getLastError();
+  }
+
   @Override
   public boolean isClosed() {
     return transmitter.isClosed();
