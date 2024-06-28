@@ -165,7 +165,7 @@ public class MultiProtocolWebSocketListener implements Listener {
                     .build();
 
             String username = null;
-            String password = null;
+            byte[] password = null;
             if (clientHandshake.hasFieldValue("Authorization")) {
               String authorization = clientHandshake.getFieldValue("Authorization");
               if (authorization != null && authorization.toLowerCase().startsWith("basic")) {
@@ -178,7 +178,7 @@ public class MultiProtocolWebSocketListener implements Listener {
                     username =
                         new String(Arrays.copyOfRange(credDecoded, 0, i), StandardCharsets.UTF_8);
                     if (i + 1 < credDecoded.length) {
-                      password = new String(Arrays.copyOfRange(credDecoded, i + 1, credDecoded.length));
+                      password = Arrays.copyOfRange(credDecoded, i + 1, credDecoded.length);
                     }
                     break;
                   }
@@ -186,13 +186,13 @@ public class MultiProtocolWebSocketListener implements Listener {
               }
               if (protocolVersion == null || protocolVersion == ProtocolVersion.OCPP1_6) {
                 if (password == null
-                    || password.length() < configuration.getParameter(JSONConfiguration.OCPPJ_CP_MIN_PASSWORD_LENGTH, OCPPJ_CP_MIN_PASSWORD_LENGTH)
-                    || password.length() > configuration.getParameter(JSONConfiguration.OCPPJ_CP_MAX_PASSWORD_LENGTH, OCPPJ_CP_MAX_PASSWORD_LENGTH))
+                    || password.length < configuration.getParameter(JSONConfiguration.OCPPJ_CP_MIN_PASSWORD_LENGTH, OCPPJ_CP_MIN_PASSWORD_LENGTH)
+                    || password.length > configuration.getParameter(JSONConfiguration.OCPPJ_CP_MAX_PASSWORD_LENGTH, OCPPJ_CP_MAX_PASSWORD_LENGTH))
                   throw new InvalidDataException(401, "Invalid password length");
               } else {
                 if (password == null
-                    || password.length() < configuration.getParameter(JSONConfiguration.OCPP2J_CP_MIN_PASSWORD_LENGTH, OCPP2J_CP_MIN_PASSWORD_LENGTH)
-                    || password.length() > configuration.getParameter(JSONConfiguration.OCPP2J_CP_MAX_PASSWORD_LENGTH, OCPP2J_CP_MAX_PASSWORD_LENGTH))
+                    || password.length < configuration.getParameter(JSONConfiguration.OCPP2J_CP_MIN_PASSWORD_LENGTH, OCPP2J_CP_MIN_PASSWORD_LENGTH)
+                    || password.length > configuration.getParameter(JSONConfiguration.OCPP2J_CP_MAX_PASSWORD_LENGTH, OCPP2J_CP_MAX_PASSWORD_LENGTH))
                   throw new InvalidDataException(401, "Invalid password length");
               }
             }

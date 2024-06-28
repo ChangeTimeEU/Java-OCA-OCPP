@@ -49,10 +49,8 @@ public class JSONConfiguration {
 
   private JSONConfiguration() {}
 
-  private static final JSONConfiguration instance = new JSONConfiguration();
-
   public static JSONConfiguration get() {
-    return instance;
+    return new JSONConfiguration();
   }
 
   public <T> JSONConfiguration setParameter(String name, T value) {
