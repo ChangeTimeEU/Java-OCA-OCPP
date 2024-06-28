@@ -29,7 +29,7 @@ import eu.chargetime.ocpp.model.SessionInformation;
 import java.util.UUID;
 
 public interface ServerEvents {
-  void authenticateSession(SessionInformation information, String username, String password) throws AuthenticationException;
+  void authenticateSession(SessionInformation information, String username, byte[] password) throws AuthenticationException;
 
   void newSession(UUID sessionIndex, SessionInformation information);
 

@@ -228,6 +228,9 @@ public class Session implements ISession {
         } catch (PropertyConstraintException ex) {
           logger.warn(ex.getMessage(), ex);
           communicator.sendCallError(id, action, "TypeConstraintViolation", ex.getMessage());
+        } catch (SecurityErrorException ex) {
+          logger.warn(ex.getMessage(), ex);
+          communicator.sendCallError(id, action, "SecurityError", ex.getMessage());
         } catch (Exception ex) {
           logger.warn(UNABLE_TO_PROCESS, ex);
           communicator.sendCallError(id, action, isLegacyRPC() ? "FormationViolation" :

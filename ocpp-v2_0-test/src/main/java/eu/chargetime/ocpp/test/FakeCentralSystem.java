@@ -74,7 +74,7 @@ public class FakeCentralSystem {
           new ServerEvents() {
             @Override
             public void authenticateSession(
-                SessionInformation information, String username, String password) throws AuthenticationException {}
+                SessionInformation information, String username, byte[] password) throws AuthenticationException {}
 
             @Override
             public void newSession(UUID sessionIndex, SessionInformation information) {
